@@ -15,6 +15,7 @@ import Model from '../components/Model';
 import { useEffect, useState } from 'react';
 import { DotsThreeOutline } from 'phosphor-react';
 import TextTypeAnimation from '../components/TextTypeAnimation';
+import { Helmet } from 'react-helmet-async';
 
 const clouds = [
   { Icon: Cloud, size: 60, delay: '0s', duration: '12s', top: '15px', opacity: 0.6 },

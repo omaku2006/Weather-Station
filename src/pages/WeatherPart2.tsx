@@ -147,7 +147,7 @@ const WeatherSecondPage = () => {
             <ChevronLeft
               className="decrementBtn btn"
               onClick={() => {
-                setIndex((prev) => (prev + 1) % 3);
+                setIndex((prev) => ((prev - 1 + 3) % 3) as 0 | 1 | 2);
               }}
             />
             <p>
@@ -170,7 +170,7 @@ const WeatherSecondPage = () => {
             <ChevronRight
               className="incrementBtn btn"
               onClick={() => {
-                setIndex((prev) => (prev - 1 + 3) % 3);
+                setIndex((prev) => ((prev + 1) % 3) as 0 | 1 | 2);
               }}
             />
           </div>

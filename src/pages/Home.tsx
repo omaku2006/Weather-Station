@@ -17,6 +17,7 @@ import { Drop } from 'phosphor-react';
 import { AirTrafficControlIcon, PersonSimpleCircleIcon } from '@phosphor-icons/react';
 import TextTypeAnimation from '../components/TextTypeAnimation';
 import Footer from '../components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const getRandomImage = (): string => {
   return imageUrls[Math.floor(Math.random() * imageUrls.length)];

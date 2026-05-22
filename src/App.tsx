@@ -31,7 +31,7 @@ const seoConfig: Record<string, { title: string; description: string; keywords: 
   },
   Weather: {
     title: 'Live Weather | Temperature, Humidity & Forecast',
-    description: `Check live weather conditions including temperature, humidity, UV index, wind speed, and 24-hour forecast for ${city}.`,
+    description: `Check live weather conditions including temperature, humidity, UV index, wind speed, and 24-hour forecast for your city.`,
     keywords:
       'live weather, temperature, humidity, UV index, wind speed, weather forecast, hourly weather',
   },
@@ -60,7 +60,6 @@ const App = () => {
   }, [tab]);
 
   const currentSeo = seoConfig[tab] || seoConfig.Home;
-
   return (
     <WeatherProvider city={city}>
       <NavbarProvider>

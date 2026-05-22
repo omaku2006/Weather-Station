@@ -21,6 +21,7 @@ import {
 import { Drop, ThermometerHot } from 'phosphor-react';
 import { WindmillIcon } from '@phosphor-icons/react';
 import AnimatedNumber from './AnimatedNumber';
+import type { FC } from 'react';
 
 type Props = {
   dewPointC: string;
