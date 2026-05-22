@@ -1,7 +1,12 @@
-.mainContainer {
-  padding-left: 110px;
+/* =============================================
+   PAGE 2 — Base (Desktop)
+   ============================================= */
+.page2.mainContainer,
+.page2 {
+  padding-left: 95px;
   position: relative;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   z-index: 9;
   height: 100vh;
 }
@@ -9,82 +14,96 @@
 .page2top {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   padding-top: 40px;
   position: relative;
+  gap: 0;
 }
 
 .page2topLeft {
   padding: 10px;
   width: 30vw;
+  min-width: 220px;
+  flex-shrink: 0;
   position: relative;
 }
-.page2topLeft p {
+
+.page2topLeft > p {
   position: absolute;
-  top: 0;
-  font-size: 18px;
+  top: 4px;
+  font-size: clamp(13px, 1.2vw, 17px);
   left: 50%;
   transform: translateX(-50%);
+  white-space: nowrap;
+  color: var(--fg-secondary);
+  text-align: center;
 }
 
 .page2top .hr {
-  position: absolute;
-  left: 31vw;
-  height: 80%;
+  align-self: stretch;
   width: 1px;
   background-color: var(--fg-secondary);
-  z-index: 99999;
+  opacity: 0.3;
+  margin: 0 16px;
+  flex-shrink: 0;
 }
 
 .page2topRight {
-  padding: 20px;
-  height: 100%;
+  flex: 1;
+  padding: 20px 16px;
   display: grid;
-  gap: 70px 30px;
+  gap: clamp(20px, 4vw, 70px) clamp(16px, 2vw, 30px);
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
+  min-width: 0;
 }
 
 .page2topRight section {
   padding: 5px;
-  margin: 10px;
   display: grid;
-  grid-template-columns: 1fr max-content 1fr;
+  grid-template-columns: auto 1fr;
   gap: 10px;
+  align-items: center;
 }
 
 .page2topRight section .icon {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 55px;
+  width: clamp(36px, 4vw, 55px);
+  color: var(--fg-secondary);
 }
 
 .page2topRight section .icon .mix:first-child {
-  top: 5px;
-  right: 5px;
+  position: absolute;
+  top: 2px;
+  right: 0px;
   stroke-width: 2.5;
 }
+
 .page2topRight section .info {
-  width: 250px;
+  color: var(--fg-secondary);
+  min-width: 0;
+}
+
+.page2topRight section .info h3,
+.page2topRight section .info h5 {
+  font-size: clamp(13px, 1.2vw, 17px);
+  opacity: 0.75;
+  white-space: nowrap;
 }
 
 .page2topRight section .info p {
-  font-size: 22px;
+  font-size: clamp(16px, 1.8vw, 22px);
+  font-weight: 600;
 }
 
-.page2cardContainer {
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  scroll-snap-type: x mandatory;
-  display: flex;
-  gap: 10px;
-}
-
+/* ─── Middle date ─────────────────────────────── */
 .page2middle {
   position: relative;
+  padding: 0 20px;
 }
 
 .page2middle .dateContainer {
@@ -97,40 +116,226 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 20px 0;
-  margin: 50px 0;
-  width: 80%;
+  padding: clamp(12px, 2vw, 20px) 0;
+  margin: clamp(20px, 3vw, 50px) 0;
+  width: min(80%, 600px);
   backdrop-filter: blur(10px);
   border-radius: 30px;
   background-color: color-mix(in srgb, transparent 80%, var(--bg-primary) 20%);
+  cursor: pointer;
 }
 
 .page2middle .dateContainer .date p {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: clamp(15px, 1.5vw, 20px);
+  color: var(--fg-secondary);
 }
 
+.page2middle .dateContainer .date svg {
+  cursor: pointer;
+  color: var(--fg-secondary);
+}
+
+/* ─── Bottom cards ────────────────────────────── */
 .page2bottom {
   position: relative;
   overflow: hidden;
+  padding: 0 20px 30px;
 }
 
-.page2bottom .page2btn {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  padding: 3px;
-  top: 200px;
+.page2btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  padding: 4px;
   border-radius: 10px;
   transition: all 300ms ease-in;
   z-index: 9999;
+  cursor: pointer;
+  color: var(--fg-secondary);
+  visibility: hidden;
 }
 
 .page2bottom:hover .page2btn {
-  background-color: color-mix(in srgb, transparent 80%, var(--bg-primary) 20%);
+  background-color: color-mix(in srgb, transparent 60%, var(--bg-primary) 40%);
+  visibility: inherit;
 }
 
-.page2bottom .page2btn.rightScrollbtn {
-  left: 93vw;
+.leftScrollbtn {
+  left: 110px;
+}
+
+.rightScrollbtn {
+  right: 20px;
+}
+
+.page2cardContainer {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding: 10px 32px;
+  scrollbar-width: none;
+}
+.page2cardContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* =============================================
+   TABLET — 769 to 1024
+   ============================================= */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .page2 {
+    padding-left: 95px;
+  }
+
+  .page2topLeft {
+    width: 32vw;
+  }
+
+  .page2topRight {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px 12px;
+  }
+
+  .page2topRight section .info p {
+    font-size: 15px;
+  }
+}
+
+/* =============================================
+   MOBILE — max 768px
+   ============================================= */
+@media (max-width: 768px) {
+  .page2.mainContainer,
+  .page2 {
+    padding-left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .page2top {
+    flex-direction: column;
+    padding: 80px 12px 12px 12px;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .page2topLeft {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .page2topLeft > p {
+    position: static;
+    transform: none;
+    left: auto;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+    white-space: normal;
+  }
+
+  .page2top .hr {
+    width: 100%;
+    height: 1px;
+    margin: 8px 0;
+  }
+
+  .page2topRight {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 12px 16px;
+    padding: 8px 4px;
+  }
+
+  .page2topRight section {
+    grid-template-columns: 36px 1fr;
+    gap: 8px;
+  }
+
+  .page2topRight section .icon {
+    width: 36px;
+  }
+
+  .page2topRight section .info h3,
+  .page2topRight section .info h5 {
+    font-size: 12px;
+  }
+
+  .page2topRight section .info p {
+    font-size: 16px;
+  }
+
+  .page2middle {
+    padding: 0 12px;
+  }
+
+  .page2middle .dateContainer .date {
+    width: 100%;
+    margin: 16px 0;
+    padding: 14px 0;
+  }
+
+  .page2bottom {
+    padding: 0 10px 20px;
+  }
+
+  .leftScrollbtn {
+    left: 10px;
+  }
+
+  .rightScrollbtn {
+    right: 10px;
+  }
+
+  .page2cardContainer {
+    padding: 8px 28px;
+    gap: 8px;
+  }
+
+  /* btnContainer for page 2 on mobile */
+  .page2 .btnContainer {
+    top: 16px;
+    right: 4px;
+  }
+}
+
+/* =============================================
+   XL — 1440px+
+   ============================================= */
+@media (min-width: 1440px) {
+  .page2.mainContainer,
+  .page2 {
+    padding-left: 100px;
+  }
+
+  .page2topLeft {
+    width: 28vw;
+  }
+
+  .page2topRight {
+    gap: 50px 40px;
+  }
+}
+
+/* =============================================
+   2K / 4K — 1920px+
+   ============================================= */
+@media (min-width: 1920px) {
+  .page2topRight section .info p {
+    font-size: 26px;
+  }
+
+  .page2topRight section .info h3,
+  .page2topRight section .info h5 {
+    font-size: 18px;
+  }
 }

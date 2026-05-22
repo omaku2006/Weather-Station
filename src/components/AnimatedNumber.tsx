@@ -1,47 +1,39 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type FC } from 'react';
 
-const AnimatedNumber = ({ value, duration = 2 }: { value: number; duration?: number }) => {
-  // ✅ NaN check — 0 fallback!
-  const safeValue = isNaN(value) || !isFinite(value) ? 0 : value;
+type Props = {
+  value: number;
+  duration?: number;
+};
 
-  const [displayValue, setDisplayValue] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-
-          let start = 0;
-          const step = safeValue / (duration * 60);
-          const timer = setInterval(() => {
-            start += step;
-            if (start >= safeValue) {
-              setDisplayValue(safeValue);
-              clearInterval(timer);
-            } else {
-              setDisplayValue(Math.floor(start));
-            }
-          }, 16);
-
-          return () => clearInterval(timer);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [safeValue, duration, hasAnimated]);
+const AnimatedNumber: FC<Props> = ({ value, duration = 1 }) => {
+  const [display, setDisplay] = useState(value);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    setHasAnimated(false);
-    setDisplayValue(0);
-  }, [safeValue]);
+    const start = display;
+    const end = value;
+    const diff = end - start;
+    if (diff === 0) return;
+    // steps used for step time calculation
+    const _steps = Math.abs(diff);
+    void _steps;
+    const stepTime = Math.max(duration * 50, 16);
+    let current = start;
+    const dir = diff > 0 ? 1 : -1;
 
-  return <span ref={ref}>{displayValue}</span>;
+    const tick = () => {
+      current += dir;
+      setDisplay(current);
+      if (current !== end) {
+        rafRef.current = window.setTimeout(tick, stepTime);
+      }
+    };
+
+    rafRef.current = window.setTimeout(tick, stepTime);
+    return () => clearTimeout(rafRef.current);
+  }, [value]);
+
+  return <>{display}</>;
 };
 
 export default AnimatedNumber;

@@ -3,7 +3,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
 }
+
+.astroBox {
+  width: 100%;
+  overflow: visible;
+}
+
+.astroBox svg {
+  width: 100%;
+  height: auto;
+}
+
 .astronomySummaryWrap .astronomySummary .icon {
   position: absolute;
   left: 0;

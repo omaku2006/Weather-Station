@@ -33,15 +33,20 @@ const WeatherSecondPage = () => {
   };
   const currentScroll = useRef<number>(0); // current position track karo
 
+  // WeatherPart2.tsx
   const handleScroll = (delta: number) => {
     if (!divScroll.current) return;
 
-    currentScroll.current += 540 * delta;
+    // ✅ Dynamic measure — card width + gap
+    const card = divScroll.current.querySelector('.page2card') as HTMLElement;
+    const gap = 10; // from CSS
+    const scrollAmount = card ? card.offsetWidth + gap : 300;
 
-    // Bounds check — negative nai jaay!
+    currentScroll.current += scrollAmount * delta;
+
+    // Bounds check
     currentScroll.current = Math.max(0, currentScroll.current);
 
-    // Max scroll check
     const maxScroll = divScroll.current.scrollWidth - divScroll.current.clientWidth;
     currentScroll.current = Math.min(currentScroll.current, maxScroll);
 

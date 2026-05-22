@@ -1,32 +1,41 @@
+/* ===== SEARCH BOX ===== */
 #searchBox {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 10px;
+  top: clamp(6px, 0.7vw, 10px);
   z-index: 99999;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px;
+  padding: clamp(6px, 0.7vw, 10px) clamp(10px, 1vw, 15px);
   border: 1px solid transparent;
-  border-radius: 30px;
+  border-radius: clamp(20px, 2.1vw, 30px);
   transition: all 300ms ease;
+  gap: clamp(4px, 0.4vw, 8px);
 }
 
+/* Search Icon */
 #searchIcon {
   color: var(--fg-secondary);
+  width: clamp(14px, 1.3vw, 18px) !important;
+  height: clamp(14px, 1.3vw, 18px) !important;
+  flex-shrink: 0;
 }
 
+/* Input Field */
 #searchBox .search {
-  font-size: 18px;
-  padding: 0 15px;
+  font-size: clamp(13px, 1.3vw, 18px);
+  padding: 0 clamp(8px, 1vw, 15px);
   color: var(--fg-primary);
-  width: 280px;
+  width: clamp(180px, 20vw, 280px);
   outline: none;
   border: 1px solid transparent;
   background: transparent;
+  transition: width 300ms ease;
 }
 
+/* Hover / Focus States */
 #searchBox:hover,
 #searchBox:focus-within {
   background: color-mix(in srgb, transparent 80%, var(--bg-primary) 20%);
@@ -34,6 +43,66 @@
   backdrop-filter: blur(8px) saturate(1.5);
 }
 
-#searchBox:hover .search {
+#searchBox:hover .search,
+#searchBox:focus-within .search {
   color: var(--fg-secondary);
+}
+
+/* Placeholder color */
+#searchBox .search::placeholder {
+  color: var(--fg-primary);
+  opacity: 0.6;
+}
+
+#searchBox:hover .search::placeholder,
+#searchBox:focus-within .search::placeholder {
+  color: var(--fg-secondary);
+  opacity: 0.8;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MEDIA QUERIES
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  #searchBox {
+    padding: 8px 12px;
+  }
+
+  #searchBox .search {
+    width: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #searchBox {
+    top: 8px;
+    padding: 6px 10px;
+  }
+
+  #searchBox .search {
+    width: 160px;
+    font-size: 13px;
+  }
+
+  #searchIcon {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  #searchBox {
+    padding: 5px 8px;
+    border-radius: 20px;
+  }
+
+  #searchBox .search {
+    width: 120px;
+    font-size: 12px;
+    padding: 0 6px;
+  }
 }

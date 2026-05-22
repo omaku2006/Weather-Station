@@ -1,9 +1,30 @@
+/* =============================================
+   SHARED
+   ============================================= */
+.justcontainer {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
 .weatherImage {
   width: 100vw;
   height: 100vh;
-  filter: brightness(0.8);
+  filter: brightness(0.75);
   position: fixed;
   z-index: 0;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.mainContainer {
+  /* Desktop: offset by sidebar (85px) */
+  padding-left: 95px;
+  position: relative;
+  z-index: 9;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .weatherContainer {
@@ -17,66 +38,99 @@
   padding: 10px;
   position: absolute;
   right: 0;
+  top: 0;
   display: flex;
-  position: absolute;
+  z-index: 99;
 }
 
+/* =============================================
+   ABOVE PART (left info + right scroll panel)
+   ============================================= */
 .abovePart {
   display: flex;
   justify-content: space-between;
-  padding: 30px 10px;
+  padding: 30px 10px 10px 10px;
+  gap: 16px;
+}
+
+.topLeft {
+  flex: 1;
+  min-width: 0;
 }
 
 .topLeft .temp {
-  font-size: 72px;
+  font-size: clamp(48px, 6vw, 80px);
   color: var(--fg-secondary);
+  line-height: 1;
 }
 
 .topLeft .condition {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px 0;
 }
 
 .topLeft .condition * {
-  margin: 4px 8px;
+  margin: 4px 6px;
 }
 
 .topLeft .condition h2 {
-  font-size: 44px;
+  font-size: clamp(22px, 3vw, 44px);
+  color: var(--fg-secondary);
+}
+
+.topLeft .feelsliketemp {
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: var(--fg-secondary);
+  margin: 4px 8px;
 }
 
 .topLeft .location {
   display: flex;
   align-items: center;
   margin: 8px 0;
+  flex-wrap: wrap;
+  gap: 4px;
 }
+
 .topLeft .location p {
   display: flex;
   align-items: center;
-  font-size: 16px;
-  padding: 4px 10px;
+  font-size: clamp(13px, 1.2vw, 16px);
+  padding: 6px 14px;
   border-radius: 30px;
   background-color: var(--fg-primary);
   color: var(--bg-primary);
-}
-.topLeft .location .info {
-  margin: 0 4px;
+  flex-wrap: wrap;
 }
 
+/* =============================================
+   RIGHT PANEL — scroll sections
+   ============================================= */
 .rightPartContainer {
   position: relative;
+  flex-shrink: 0;
+  margin-top: 20px;
 }
 
 .rightPart {
   margin: 20px 0;
-  height: 424px;
+  height: 380px;
   overflow-y: scroll;
+  overflow-x: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: start;
   scroll-snap-type: y mandatory;
+  scrollbar-width: none;
 }
+.rightPart::-webkit-scrollbar {
+  display: none;
+}
+
 .scrollbtn {
   position: absolute;
   background-color: transparent;
@@ -85,6 +139,7 @@
   transition: 500ms ease-in-out all;
   border: none;
   z-index: 9;
+  cursor: pointer;
 }
 
 .rightPartContainer:hover .scrollbtn {
@@ -98,32 +153,43 @@
 .scrollbtn.btnup {
   top: 0;
   left: 50%;
+  transform: translateX(-50%);
 }
 
 .scrollbtn.btndown {
   bottom: 0;
   left: 50%;
+  transform: translateX(-50%);
 }
 
 .rightPart .section {
   display: grid;
   gap: 8px;
-  padding: 5px;
-  margin: 4px;
-  grid-template-columns: 1fr max-content 1fr;
-  padding: 20px;
+  padding: 16px 20px;
+  margin: 4px 0;
+  grid-template-columns: 60px max-content 1fr;
+  align-items: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  width: 100%;
 }
 
 .rightPart .section .iconContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--fg-secondary);
 }
 
 .rightPart .section p {
-  font-size: 22px;
+  font-size: clamp(16px, 1.8vw, 22px);
+  color: var(--fg-secondary);
+}
+
+.rightPart .section h5 {
+  font-size: clamp(12px, 1.2vw, 15px);
+  opacity: 0.75;
+  color: var(--fg-secondary);
 }
 
 .rightPart .section .iconContainer span {
@@ -136,6 +202,7 @@
   font-weight: 900;
   border-radius: 100%;
   border: 3px solid var(--fg-secondary);
+  color: var(--fg-secondary);
 }
 
 .rightPart .section .info p {
@@ -155,94 +222,99 @@
 .rightPart .date h5 {
   text-align: center;
   margin: 7px;
+  color: var(--fg-secondary);
+  font-size: clamp(11px, 1.1vw, 14px);
 }
+
+/* =============================================
+   BOTTOM — hourly cards + astronomy
+   ============================================= */
 .bottom {
   position: absolute;
   display: flex;
-  bottom: 32px;
+  bottom: 24px;
+  left: 10px;
+  right: 10px;
+  gap: 0;
 }
 
 .cardContainerWrap {
-  width: 65vw;
-}
-
-.cardContainer {
-  display: flex;
-  overflow: auto;
-  height: 70%;
-  align-self: flex-end;
-  scroll-snap-type: x mandatory;
-  /* 👇 magic fade */
-  /* -webkit-mask-image: linear-gradient(to right, black 0%, black 75%, transparent 100%); */
-  /* mask-image: linear-gradient(to right, black 0%, black 75%, transparent 100%); */
-}
-
-.bottom .hr {
-  width: 1px;
-  height: 100%;
-  position: absolute;
-  left: 65.1vw;
-  background-color: var(--fg-primary);
-}
-
-.cardContainerWrap {
+  flex: 1;
+  min-width: 0;
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.cardContainerWrap .date {
+.weatherContainer .dateContainer {
   position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 32px;
-  width: 40%;
+  top: -20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.cardContainerWrap .date {
+  position: relative;
+  top: 0;
+  left: auto;
+  transform: none;
+  padding: 10px 28px;
+  width: auto;
+  max-width: 260px;
   border-radius: 30px;
   transition: all 300ms ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .cardContainerWrap .date p {
-  font-size: 22px;
+  font-size: clamp(14px, 1.5vw, 20px);
   text-align: center;
-}
-
-.cardContainerWrap .dateWrap {
-  position: relative;
+  color: var(--fg-secondary);
 }
 
 .cardContainerWrap .date .btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.cardContainerWrap .date .decrementBtn {
-  left: 10px;
-}
-.cardContainerWrap .date .incrementBtn {
-  right: 10px;
-}
-
-.cardContainerWrap:hover .scrollbtn {
-  opacity: 1;
+  cursor: pointer;
+  color: var(--fg-secondary);
+  flex-shrink: 0;
 }
 
 .cardContainerWrap:hover .date {
-  background-color: color-mix(in srgb, var(--bg-primary) 20%, transparent 80%);
-
+  background-color: color-mix(in srgb, var(--bg-primary) 30%, transparent 70%);
   backdrop-filter: blur(8px);
+}
+
+.cardContainer {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  align-self: flex-end;
+  scroll-snap-type: x mandatory;
+  gap: 8px;
+  padding: 8px 4px;
+  padding-top: 48px;
+  width: 100%;
+  scrollbar-width: none;
+}
+.cardContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .scrollbtn.leftScroll,
 .scrollbtn.rightScroll {
   top: 50%;
+  transform: translateY(-50%);
   position: absolute;
   opacity: 0;
   border-radius: 10px;
-  background-color: color-mix(in srgb, var(--bg-primary) 20%, transparent 80%);
-  border-radius: 10px;
+  background-color: color-mix(in srgb, var(--bg-primary) 30%, transparent 70%);
   backdrop-filter: blur(8px);
+  padding: 6px;
+  color: var(--fg-secondary);
 }
 
 .scrollbtn.leftScroll {
@@ -253,8 +325,218 @@
   right: 0;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────────── */
+.cardContainerWrap:hover .scrollbtn {
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────────────────────── */
+.bottom .hr {
+  width: 1px;
+  align-self: stretch;
+  background-color: color-mix(in srgb, var(--fg-primary) 40%, transparent 60%);
+  margin: 0 8px;
+  flex-shrink: 0;
+}
+
 .astronomySummaryWrap {
   position: relative;
-  width: 32vw;
+  width: clamp(220px, 28vw, 380px);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* =============================================
+   TABLET — 769px to 1024px
+   ============================================= */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .mainContainer {
+    padding-left: 95px;
+  }
+
+  .abovePart {
+    padding-top: 20px;
+  }
+
+  .rightPart {
+    height: 320px;
+  }
+
+  .rightPart .section {
+    padding: 12px 14px;
+    grid-template-columns: 48px max-content 1fr;
+  }
+
+  .astronomySummaryWrap {
+    width: clamp(180px, 24vw, 300px);
+  }
+
+  .bottom {
+    bottom: 16px;
+  }
+}
+
+/* =============================================
+   MOBILE — max 768px
+   ============================================= */
+@media (max-width: 768px) {
+  .mainContainer {
+    padding-left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+  }
+
+  .weatherContainer {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    padding-bottom: 20px;
+  }
+
+  /* Shift content so hamburger doesn't overlap */
+  .abovePart {
+    flex-direction: column;
+    padding: 80px 12px 10px 12px;
+    gap: 0;
+  }
+
+  .topLeft .temp {
+    font-size: clamp(56px, 15vw, 80px);
+  }
+
+  .topLeft .condition h2 {
+    font-size: clamp(22px, 6vw, 36px);
+  }
+
+  .btnContainer {
+    top: 16px;
+    right: 4px;
+    padding: 4px;
+  }
+
+  /* Right panel goes BELOW left on mobile */
+  .rightPartContainer {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .rightPart {
+    height: auto;
+    max-height: 260px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px;
+    margin: 8px 0;
+  }
+
+  .rightPart .section {
+    flex-shrink: 0;
+    width: 160px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    text-align: center;
+    padding: 12px;
+    background: color-mix(in srgb, var(--bg-primary) 25%, transparent 75%);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--fg-primary) 15%, transparent 85%);
+    scroll-snap-align: start;
+  }
+
+  .rightPart .date {
+    flex-shrink: 0;
+    width: 180px;
+    height: auto;
+    min-height: 90px;
+    scroll-snap-align: start;
+  }
+
+  /* Hide up/down scroll buttons on mobile, show left/right instead */
+  .scrollbtn.btnup,
+  .scrollbtn.btndown {
+    display: none;
+  }
+
+  /* Bottom section becomes vertical stack on mobile */
+  .bottom {
+    position: static;
+    flex-direction: column;
+    padding: 0 12px 16px;
+    gap: 12px;
+  }
+
+  .bottom .hr {
+    width: 100%;
+    height: 1px;
+    margin: 4px 0;
+  }
+
+  .cardContainerWrap {
+    width: 100%;
+    min-height: 180px;
+  }
+
+  .cardContainer {
+    padding-top: 44px;
+    height: auto;
+  }
+
+  .astronomySummaryWrap {
+    width: 100%;
+    padding: 0 4px;
+  }
+}
+
+/* =============================================
+   XL screens — 1440px+
+   ============================================= */
+@media (min-width: 1440px) {
+  .mainContainer {
+    padding-left: 100px;
+  }
+
+  .topLeft .temp {
+    font-size: 88px;
+  }
+
+  .rightPart {
+    height: 450px;
+  }
+
+  .astronomySummaryWrap {
+    width: 360px;
+  }
+}
+
+/* =============================================
+   2K / 4K — 1920px+
+   ============================================= */
+@media (min-width: 1920px) {
+  .topLeft .temp {
+    font-size: 100px;
+  }
+
+  .topLeft .condition h2 {
+    font-size: 52px;
+  }
+
+  .rightPart {
+    height: 500px;
+  }
+
+  .rightPart .section p {
+    font-size: 26px;
+  }
+
+  .astronomySummaryWrap {
+    width: 420px;
+  }
 }

@@ -340,7 +340,8 @@ const About = ({ setTab }: Props) => {
               </p>
               <p>
                 Every component, every glassmorphism effect, every bug fix, and every line of logic
-                was built by me — manually, with patience and practice.
+                was built by me — manually, with patience and practice. But yeah I take much help to
+                make website responsive, but rest of thing is mostly done by only Me.
               </p>
               <p>
                 But I’m deeply grateful to AI for being my <strong>24/7 learning companion</strong>.
