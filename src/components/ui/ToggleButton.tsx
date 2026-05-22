@@ -9,8 +9,9 @@ type Props = {
 const ToggleButton: FC<Props> = ({ mark, func }) => {
   const indicator = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!indicator) return;
-    indicator.current.style.fontSize = mark.length >= 2 ? '13px' : '16px';
+    if (indicator.current) {
+      indicator.current.style.fontSize = mark.length >= 2 ? '13px' : '16px';
+    }
   }, [mark]);
 
   return (

@@ -10,7 +10,19 @@
       href="https://fonts.googleapis.com/css2?family=BBH+Hegarty&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet"
     />
-    <title>weather-station</title>
+    <!-- Fallback (overridden by Helmet) -->
+    <title>Weather Station | Real-Time Weather Forecast</title>
+    <meta
+      name="description"
+      content="Get accurate weather updates, forecasts, and astronomy data for any city worldwide."
+    />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://wttr.in" />
+    <link rel="preconnect" href="https://api.unsplash.com" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <div id="root"></div>

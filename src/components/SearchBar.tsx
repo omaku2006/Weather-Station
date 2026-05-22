@@ -28,6 +28,7 @@ const SearchBar = ({ city, setCity }: { city: string; setCity: (city: string) =>
       <input
         type="search"
         className="search"
+        aria-label="Enter your city name"
         placeholder={`${city}...`}
         value={input}
         onChange={handleInput}

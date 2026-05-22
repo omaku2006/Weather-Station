@@ -38,7 +38,7 @@ const TextTypeAnimation: React.FC<TextTypeAnimationProps> = ({
   const [currentLoop, setCurrentLoop] = useState<number>(0);
 
   const elementRef = useRef<HTMLSpanElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   // 🔍 Intersection Observer

@@ -1,7 +1,7 @@
 import './Footer.css';
 import { AirTrafficControlIcon, GithubLogoIcon } from '@phosphor-icons/react';
 import { Cloud, SquareArrowOutUpRight } from 'lucide-react';
-import { GithubLogo, InstagramLogo, LinkedinLogo, TwitchLogo, TwitterLogo } from 'phosphor-react';
+import { InstagramLogo, LinkedinLogo, TwitterLogo } from 'phosphor-react';
 import { useCallback } from 'react';
 import TextTypeAnimation from './TextTypeAnimation';
 

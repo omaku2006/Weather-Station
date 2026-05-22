@@ -1,4 +1,4 @@
-import type { FC, JSX, ReactNode } from 'react';
+import type { FC, JSX } from 'react';
 import { useWeather } from './FetchData';
 import {
   Cloud,
@@ -8,7 +8,6 @@ import {
   CloudLightning,
   CloudMoon,
   CloudMoonRain,
-  CloudRain,
   CloudRainWind,
   CloudSnow,
   CloudSun,

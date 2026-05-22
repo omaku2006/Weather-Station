@@ -19,7 +19,7 @@ import { InfoPopover } from '../components/InfoPopover';
 import Loading from './Loading';
 
 const WeatherSecondPage = () => {
-  const { data, icon, location, dateTime, weatherImage, weatherImageSource } = useWeather();
+  const { data, location, dateTime } = useWeather();
   const [index, setIndex] = useState<0 | 1 | 2>(0);
   const [tempUnit, setTempUnit] = useState<'C' | 'F'>('C');
   const [lengthUnit, setLengthUnit] = useState<'Km' | 'M'>('Km');

@@ -1,4 +1,3 @@
-import { useState, type FC } from 'react';
 import './CardContainer.css';
 import Icon from './Icon';
 import { weatherCode } from '../scripts/Constants';
@@ -11,7 +10,6 @@ import {
   CloudSnow,
   Cloudy,
   Eye,
-  MousePointer,
   MousePointer2,
   Snowflake,
   Sun,
