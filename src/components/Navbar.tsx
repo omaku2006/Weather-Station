@@ -6,7 +6,7 @@ import { AirTrafficControlIcon } from '@phosphor-icons/react';
 import { X } from 'lucide-react';
 
 type Props = {
-  tabs: { icon: ElementType; label: string }[];
+  tabs: { icon: ElementType; label: string; path: string }[];
   setTab: (tab: string) => void;
   tab: string;
 };
