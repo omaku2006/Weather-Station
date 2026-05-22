@@ -1,0 +1,78 @@
+.toggleButton {
+  border: 1px solid var(--fg-secondary);
+  border-radius: 30px;
+  height: 30px;
+  margin: 8px;
+  width: 60px;
+  position: relative;
+  z-index: 9999;
+}
+.toggle-state {
+  visibility: hidden;
+  position: absolute;
+}
+.indicator {
+  width: 25px;
+  height: 25px;
+  margin: 1.5px;
+  color: var(--bg-primary);
+  background-color: var(--fg-secondary);
+  border-radius: 30px;
+  position: absolute;
+  transform-origin: center;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  /* default no animation; will be set when checked/unchecked */
+  animation-duration: 400ms;
+  animation-timing-function: ease-in-out();
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+.toggle-state:checked + .indicator {
+  animation-name: knobMoveRight;
+}
+
+/* play left animation when unchecked */
+.toggle-state:not(:checked) + .indicator {
+  animation-name: knobMoveLeft;
+}
+
+@keyframes knobMoveRight {
+  0% {
+    width: 25px;
+    left: 0px;
+    color: transparent;
+  }
+  50% {
+    width: 40px;
+    color: transparent;
+    left: calc((50% - 1.5px - 12.5px) / 2);
+  }
+  100% {
+    width: 25px;
+    color: var(--bg-primary);
+    left: calc(100% - 3px - 25px);
+  }
+}
+
+@keyframes knobMoveLeft {
+  0% {
+    width: 25px;
+    color: transparent;
+    left: calc(100% - 3px - 25px);
+  }
+  50% {
+    width: 40px;
+    color: transparent;
+    left: calc((50% - 1.5px - 12.5px) / 2);
+  }
+  100% {
+    width: 25px;
+    color: var(--bg-primary);
+
+    left: 0px;
+  }
+}

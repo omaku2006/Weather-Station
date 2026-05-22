@@ -1,0 +1,18 @@
+.mix-diagonal {
+  position: relative;
+  display: inline-block;
+}
+
+.mix-diagonal .top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-5px, -5px);
+}
+
+.mix-diagonal .bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(15px, 5px);
+}

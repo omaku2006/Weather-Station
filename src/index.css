@@ -1,0 +1,218 @@
+/* ===== ROOT & BASE ===== */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ✅ Body scroll nahi kare */
+}
+
+#root {
+  min-height: 100vh; /* ✅ height → min-height (content overflow thayi to scroll aave) */
+  height: 100%;
+  display: flex; /* ✅ Flex for sidebar layout */
+  /* overflow-x: hidden; /* ✅ horizontal scroll prevent */
+  /* overflow-y: auto; /* ✅ vertical scroll allow jyare need hoy */
+  overflow: hidden; /* ✅ Root scroll nahi kare */
+}
+
+:root {
+  --bg-primary: #14213d;
+  --bg-secondary: #000000;
+  --fg-primary: #e5e5e5;
+  --fg-secondary: #ffffff;
+  --accent-color: #fca311;
+
+  --heading-font: 'BBH Hegarty', sans-serif;
+  --body-font: 'DM Sans', sans-serif;
+
+  /* ✅ Responsive spacing scale */
+  --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+  --space-md: clamp(1rem, 2vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 3vw, 2.5rem);
+  --space-xl: clamp(2rem, 5vw, 4rem);
+  --space-2xl: clamp(3rem, 7vw, 6rem);
+}
+
+/* ===== RESET ===== */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--fg-primary) color-mix(in srgb, transparent 60%, var(--bg-primary) 40%);
+}
+
+*::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  transition: all 400ms ease;
+  visibility: hidden;
+}
+
+*:hover::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  visibility: inherit;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*:hover::-webkit-scrollbar-track {
+  background: color-mix(in srgb, transparent 60%, var(--bg-primary) 40%);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--fg-secondary);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* ===== BODY ===== */
+body {
+  background-color: var(--bg-primary);
+  font-family: var(--body-font);
+  color: var(--fg-primary);
+  z-index: 0;
+  /* ✅ Prevent zoom issues on mobile */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ===== HEADINGS — Responsive with clamp() ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  z-index: 3;
+  /* ✅ Better line height for all screens */
+  line-height: 1.2;
+  /* ✅ Prevent overflow on small screens */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ✅ Fluid typography — auto adjusts based on screen width */
+h1 {
+  font-size: clamp(1.75rem, 5vw + 0.5rem, 3.5rem);
+} /* 28px → 56px */
+h2 {
+  font-size: clamp(1.5rem, 4vw + 0.5rem, 3rem);
+} /* 24px → 48px */
+h3 {
+  font-size: clamp(1.25rem, 3.5vw + 0.5rem, 2.5rem);
+} /* 20px → 40px */
+h4 {
+  font-size: clamp(1.125rem, 3vw + 0.5rem, 2.25rem);
+} /* 18px → 36px */
+h5 {
+  font-size: clamp(1rem, 2.5vw + 0.5rem, 2rem);
+} /* 16px → 32px */
+h6 {
+  font-size: clamp(0.875rem, 2vw + 0.5rem, 1.5rem);
+} /* 14px → 24px */
+
+/* ===== PARAGRAPH & TEXT ===== */
+p,
+label,
+button {
+  font-family: var(--body-font);
+  /* ✅ Responsive font size */
+  font-size: clamp(0.875rem, 1.2vw + 0.5rem, 1.125rem); /* 14px → 18px */
+  z-index: 3;
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE UTILITIES (use in components) ===== */
+
+/* Container — max-width with auto padding */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Responsive grid helper */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-md);
+}
+
+/* Flex wrap helper */
+.flex-responsive {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+/* ===== MEDIA QUERIES (fine-tuning) ===== */
+
+/* Tablet: 768px thi niche */
+@media (max-width: 768px) {
+  :root {
+    /* Slightly adjust spacing on smaller screens */
+    --space-lg: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.15; /* Tighter on mobile */
+  }
+}
+
+/* Mobile: 480px thi niche */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md); /* Less padding on small screens */
+  }
+
+  p,
+  label,
+  button {
+    line-height: 1.5;
+  }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATION ===== */
+@media (hover: none) and (pointer: coarse) {
+  /* Mobile ma scrollbar hamesha visible rakhvu */
+  *::-webkit-scrollbar {
+    visibility: inherit;
+    width: 2px;
+  }
+
+  * {
+    scrollbar-width: 2px;
+  }
+}
+
+/* ===== REDUCED MOTION (accessibility) ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== SELECTION COLOR ===== */
+::selection {
+  background: var(--accent-color);
+  color: var(--bg-secondary);
+}

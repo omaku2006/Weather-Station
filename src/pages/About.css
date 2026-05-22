@@ -1,0 +1,354 @@
+.aboutUsPage {
+  position: relative;
+  padding: 30px;
+  padding-left: 100px;
+  background-color: var(--fg-primary);
+  color: var(--bg-primary);
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.aboutUsPage footer {
+  left: -100px;
+}
+
+.aboutUsPage p {
+  font-size: 28px;
+}
+
+.aboutUsPage .aboutHeroSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  scroll-snap-align: start;
+}
+
+.aboutUsPage .aboutHeroSection .aboutLeft {
+  width: 45%;
+  height: 100%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.aboutUsPage .aboutHeroSection .aboutLeft h1 {
+  font-size: 90px;
+  margin-bottom: 44px;
+}
+
+.aboutUsPage .aboutHeroSection .aboutLeft h2 {
+  font-size: 56px;
+  margin-bottom: 24px;
+}
+
+.aboutUsPage .aboutHeroSection .aboutLeft p {
+  line-height: 2.2;
+  text-align: justify;
+}
+
+.aboutUsPage .aboutHeroSection .aboutLeft q {
+  font-style: italic;
+  font-weight: 800;
+}
+
+.aboutUsPage .aboutHeroSection .aboutRight {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.aboutUsPage .aboutHeroSection .aboutRight img {
+  margin: 15px;
+  border-radius: 36px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.aboutUsPage .aboutDetailed {
+  height: 100%;
+  position: relative;
+  margin: 20px 0;
+  scroll-snap-align: start;
+}
+
+.aboutUsPage .aboutDetailed h1 {
+  font-size: 80px;
+}
+
+.aboutUsPage .aboutDetailed .aboutTop {
+  display: flex;
+  flex-direction: row;
+}
+
+.aboutUsPage .aboutDetailed .aboutTop .aboutTopLeft {
+  width: 45%;
+}
+
+.aboutUsPage .aboutDetailed .aboutTop .aboutTopLeft h1 {
+  margin-bottom: 30px;
+}
+
+.aboutUsPage .aboutDetailed .aboutTop .aboutTopLeft p {
+  line-height: 2;
+}
+
+.aboutUsPage .aboutDetailed .aboutTop .aboutTopRight {
+  width: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutUsPage .floatingCloud {
+  position: absolute;
+  width: 50%;
+  top: 80px;
+}
+
+.aboutUsPage .floatingCloud * {
+  position: absolute;
+  animation: floatingCloud linear infinite;
+  will-change: transform;
+}
+
+.aboutUsPage .floatingCloud svg {
+  top: 300px;
+
+  width: 60%;
+}
+
+.aboutUsPage .WSLogo {
+  margin-top: 40px;
+}
+
+@keyframes floatingCloud {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  } /* ← 100% thi vadu — container bahar jaay smoothly */
+}
+
+.aboutUsPage .aboutBottom {
+  position: relative;
+  display: flex;
+  scroll-snap-align: start;
+}
+
+.aboutUsPage .aboutBottom .aboutBottomLeft {
+  position: relative;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard {
+  position: absolute;
+  height: 450px;
+  width: 450px;
+  border-radius: 30px;
+  transition: all 500ms ease-in-out;
+}
+
+.aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:first-child {
+  background: url(/public/card1.png) no-repeat center / cover;
+  transform: translate(-60px, -45px);
+}
+
+.aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:first-child:hover {
+  z-index: 1;
+}
+
+.aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:last-child {
+  background: url(/public/card2.png) no-repeat center / cover;
+  transform: translate(60px, 45px);
+}
+.aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:last-child:hover {
+  z-index: 1;
+}
+.aboutUsPage .aboutBottom .aboutBottomRight {
+  width: 60%;
+}
+
+.aboutUsPage .aboutBottom .aboutBottomRight h1 {
+  margin-bottom: 30px;
+}
+
+.aboutUsPage .aboutBottom .aboutBottomRight p {
+  line-height: 2;
+}
+
+.aboutUsPage .aboutThird h1 {
+  scroll-snap-align: start;
+}
+
+.aboutUsPage .aboutThird h1 {
+  position: relative;
+}
+.aboutUsPage .aboutThird h1 {
+  margin-bottom: 30px;
+}
+
+.aboutUsPage .aboutThird .aboutThirdTop {
+  position: relative;
+  display: flex;
+}
+
+.aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft {
+  width: 50%;
+}
+
+.aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft > p {
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+.aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft ul {
+  padding-left: 40px;
+  line-height: 2;
+}
+
+.aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft ul li {
+  font-size: 24px;
+}
+
+.aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr max-content;
+  grid-row: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight .aboutThirdIcon {
+  margin: 30px;
+  position: relative;
+}
+
+.aboutUsPage .aboutThird .aboutThirdDown {
+  display: flex;
+  height: 50%;
+  position: relative;
+}
+
+.aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownLeft {
+  display: flex;
+  width: 50%;
+  height: 600px;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownLeft img {
+  height: 500px;
+  border-radius: 30px;
+}
+
+.aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownRight {
+  width: 50%;
+}
+
+.aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownRight ul {
+  padding-left: 30px;
+}
+
+.aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownRight ul li {
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.aboutUsPage .aboutLastWrap {
+  display: flex;
+  scroll-snap-align: start;
+
+  justify-content: center;
+}
+
+.aboutUsPage .aboutLast {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.aboutUsPage .aboutLast h1 {
+  margin: 30px 0;
+}
+
+.aboutUsPage .aboutLast ul li {
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.aboutUsPage .aboutLast p {
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.aboutUsPage > div {
+  margin: 30px 0;
+}
+
+.aboutUsPage .aboutHeroSection .aboutLeft.scrollElement {
+  transform: translateX(-100%);
+}
+
+.aboutUsPage .aboutHeroSection .aboutRight.scrollElement {
+  opacity: 0;
+}
+
+.aboutUsPage .aboutDetailed .aboutTopLeft.scrollElement {
+  transform: translateX(-100%);
+}
+
+.aboutUsPage .aboutDetailed .aboutTopRight.scrollElement {
+  opacity: 0;
+}
+
+.aboutUsPage .aboutDetailed .aboutBottomLeft.scrollElement {
+  opacity: 0;
+}
+
+.aboutUsPage .aboutDetailed .aboutBottomRight.scrollElement {
+  transform: translateX(100%);
+}
+
+.aboutUsPage .aboutThird .aboutThirdTopLeft.scrollElement {
+  transform: translateX(-100%);
+}
+
+.aboutUsPage .aboutThird .aboutThirdTopRight.scrollElement {
+  transform: translateX(100%);
+}
+
+.aboutUsPage .aboutThird .aboutThirdDownLeft.scrollElement {
+  opacity: 0;
+}
+
+.aboutUsPage .aboutThird .aboutThirdDownRight.aboutThirdDownRight {
+  transform: translateX(100%);
+}
+
+.aboutUsPage .aboutLast.scrollElement {
+  transform: translateY(200px);
+  opacity: 0;
+}
+
+.aboutUsPage .scrollElement {
+  transition: all 800ms ease-in-out;
+}
+
+.aboutUsPage .scrollElement.visible {
+  transform: translateX(0) translateY(0) !important;
+  opacity: 1 !important;
+}

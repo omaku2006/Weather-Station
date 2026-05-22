@@ -1,0 +1,77 @@
+.page2card {
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 20px;
+  border-radius: 10px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  transition: all 0.3s ease-in-out;
+}
+
+.page2card:hover {
+  background-color: color-mix(in srgb, transparent 90%, var(--bg-primary) 10%);
+  backdrop-filter: blur(10px) saturate(1.5);
+}
+
+.page2card .cardHr {
+  margin: 30px;
+  border: 2px solid var(--fg-secondary);
+}
+
+.page2card p {
+  font-size: 20px;
+}
+
+.page2card .cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page2card .cardTopMiddle {
+  padding: 100px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page2card .cardTopMiddle p {
+  padding: 5px 10px;
+  background-color: var(--fg-primary);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.page2card .cardMiddle section {
+  display: grid;
+  width: 500px;
+  margin: 25px 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.page2card .cardMiddle section p:first-child {
+  width: 250px;
+}
+
+.page2card .cardMiddle section p:last-child {
+  width: 75px;
+  text-align: right;
+}
+
+.page2card .page2bottom {
+  position: relative;
+}
+
+.page2card .page2bottom .windDirIcon {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+}

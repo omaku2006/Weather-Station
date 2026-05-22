@@ -1,0 +1,520 @@
+/* ===== HOME CONTAINER ===== */
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* ✅ 100vw → 100% (scrollbar issue fix) */
+  min-height: 100vh; /* ✅ height → min-height */
+  position: relative;
+  overflow-x: hidden !important;
+  overflow-y: scroll; /* ✅ scroll → auto */
+  background-color: var(--fg-primary);
+  color: var(--bg-primary);
+}
+
+.homeContainer .middlePage h6 {
+  font-family: var(--body-font);
+  font-weight: 900;
+}
+
+/* ===== HR DIVIDER ===== */
+.hrContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 var(--space-md); /* ✅ Add padding */
+}
+
+.homeHr {
+  margin: clamp(20px, 4vw, 50px); /* ✅ Responsive margin */
+  border: 2px solid var(--bg-primary);
+  width: 100%;
+}
+
+/* ===== BRAND NAME ===== */
+.homeContainer .brandName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* ✅ Wrap on small screens */
+  gap: clamp(8px, 2vw, 16px); /* ✅ Replace &nbsp; with gap */
+}
+
+.homeContainer .brandName svg {
+  width: clamp(40px, 8vw, 65px); /* ✅ Responsive icon */
+  height: clamp(40px, 8vw, 65px);
+  flex-shrink: 0;
+}
+
+/* ===== HERO SECTION ===== */
+.homeContainer .heroSection {
+  width: 100%;
+  min-height: 70vh; /* ✅ height → min-height */
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  padding: var(--space-xl) var(--space-md); /* ✅ Add padding */
+}
+
+.homeContainer .heroSection .heroSectionImage {
+  position: absolute;
+  filter: brightness(0.8);
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.homeContainer .heroSection section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-secondary);
+  z-index: 1; /* ✅ Ensure content above image */
+  text-align: center; /* ✅ Center text */
+  width: 100%;
+  max-width: 900px; /* ✅ Prevent too wide */
+  padding: 0 var(--space-md);
+}
+
+.homeContainer .heroSection h1 {
+  font-size: clamp(2rem, 6vw, 3.75rem); /* ✅ 60px → responsive */
+  margin: clamp(15px, 3vw, 30px);
+  line-height: 1.2;
+}
+
+.homeContainer .heroSection h2 {
+  font-size: clamp(1.25rem, 4vw, 2.3rem); /* ✅ 37px → responsive */
+  margin: clamp(10px, 2vw, 18px);
+  line-height: 1.3;
+}
+
+.homeContainer .heroSection p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* ✅ 24px → responsive */
+  margin: clamp(8px, 1.5vw, 11px);
+  max-width: 700px; /* ✅ Prevent too wide */
+  line-height: 1.5;
+}
+
+/* ===== SEARCH CONTAINER ===== */
+.homeContainer .heroSection .searchContainer {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* ✅ Add max-width */
+  padding: 0 var(--space-md);
+  z-index: 1;
+}
+
+.homeContainer .heroSection .searchContainer input {
+  padding: clamp(12px, 2vw, 20px); /* ✅ Responsive padding */
+  width: 100%; /* ✅ 550px → 100% */
+  max-width: 550px; /* ✅ Keep max */
+  outline: none;
+  border: 1px solid var(--fg-secondary);
+  border-radius: 100px;
+  padding-right: clamp(80px, 15vw, 100px); /* ✅ Responsive right padding */
+  font-size: clamp(14px, 2vw, 18px); /* ✅ Responsive */
+  background-color: color-mix(in srgb, var(--bg-primary) 20%, transparent 80%);
+  color: var(--fg-secondary);
+  backdrop-filter: blur(10px);
+}
+
+.homeContainer .heroSection .searchContainer button {
+  position: absolute;
+  right: clamp(5px, 1vw, 10px); /* ✅ Responsive */
+  top: 50%;
+  transform: translateY(-50%); /* ✅ Center vertically */
+  font-weight: 400;
+  font-size: clamp(14px, 2vw, 18px); /* ✅ Responsive */
+  padding: clamp(12px, 2vw, 18px); /* ✅ Responsive */
+  border-radius: 100px;
+  width: clamp(80px, 15vw, 100px); /* ✅ Responsive */
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== MIDDLE PAGE ===== */
+.homeContainer .middlePage {
+  width: 100%; /* ✅ Add width */
+  max-width: 1200px;
+  position: relative;
+  padding: 0 var(--space-md); /* ✅ Add padding */
+}
+
+.homeContainer .middlePage .title h1 {
+  font-size: clamp(2rem, 5vw, 3.75rem); /* ✅ 60px → responsive */
+  margin-bottom: clamp(30px, 5vw, 60px);
+  position: relative;
+  text-align: center; /* ✅ Center on mobile */
+}
+
+.homeContainer .middlePage .title p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* ✅ 25px → responsive */
+  margin-bottom: clamp(15px, 3vw, 30px);
+  text-align: center;
+  color: var(--bg-secondary);
+  line-height: 1.5;
+}
+
+.homeContainer .middlePage .title h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%; /* ✅ Center the line */
+  transform: translateX(-50%); /* ✅ Center the line */
+  height: 4px;
+  width: clamp(60px, 20%, 200px); /* ✅ Responsive width */
+  max-width: 100%;
+  background-color: var(--bg-primary);
+}
+
+.homeContainer .middlePage .features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* ===== CONTENT / INFO CARDS ===== */
+.homeContainer .middlePage .content {
+  width: 100%; /* ✅ 80% → 100% */
+  max-width: 1000px; /* ✅ Add max-width */
+  margin: 0 auto;
+}
+
+.homeContainer .middlePage .infoContent h6 {
+  color: var(--bg-secondary);
+  font-size: clamp(1.25rem, 3vw, 1.875rem); /* ✅ 30px → responsive */
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.homeContainer .middlePage .infoContent p {
+  font-size: clamp(1rem, 2vw, 1.25rem); /* ✅ 20px → responsive */
+  text-wrap: auto;
+  color: var(--bg-secondary);
+  line-height: 1.6;
+}
+
+.homeContainer .middlePage .featureIconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* ✅ Prevent shrink */
+}
+
+.homeContainer .middlePage .featureIconContainer .featureIcon {
+  color: var(--fg-secondary);
+  width: clamp(35px, 5vw, 50px); /* ✅ Responsive icon */
+  height: clamp(35px, 5vw, 50px);
+}
+
+.homeContainer .middlePage .featureIconContainer .paddingIcon {
+  padding: clamp(10px, 2vw, 15px); /* ✅ Responsive */
+  margin: clamp(5px, 2vw, 10px) clamp(15px, 3vw, 30px); /* ✅ Responsive */
+  border-radius: 100%;
+  background-color: var(--bg-primary);
+  display: flex; /* ✅ Ensure icon centered */
+  align-items: center;
+  justify-content: center;
+}
+
+.homeContainer .middlePage .features {
+  padding: clamp(20px, 3vw, 40px) clamp(15px, 2vw, 30px); /* ✅ Responsive */
+}
+
+.homeContainer .middlePage .features .content .info {
+  display: flex;
+  margin-bottom: clamp(30px, 5vw, 70px); /* ✅ Responsive */
+  gap: clamp(15px, 3vw, 30px); /* ✅ Add gap */
+  align-items: flex-start; /* ✅ Align top */
+}
+
+.homeContainer .middlePage .features .content .info:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.homeContainer .middlePage .features .content .info:last-child {
+  margin-bottom: 20px;
+}
+
+/* ===== HOME CARDS (Glassmorphism) ===== */
+.homeContainer .middlePage .homeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* ✅ 400px → 100% */
+  max-width: 400px; /* ✅ Keep max */
+  padding: clamp(20px, 3vw, 30px); /* ✅ Responsive */
+  border-radius: 20px;
+  z-index: 1;
+  margin: clamp(10px, 2vw, 20px); /* ✅ Responsive */
+  transition: all 0.5s ease;
+}
+
+.homeContainer .middlePage .homeCard:hover {
+  backdrop-filter: blur(10px);
+  transform: translateY(-8px);
+}
+
+.homeContainer .middlePage .contentCardFormate {
+  position: relative;
+  width: 100%;
+}
+
+.homeContainer .middlePage .homeCardImage {
+  position: absolute;
+  height: 85%;
+  width: 100vw; /* ✅ 110vw → 100% */
+  opacity: 0;
+  z-index: 0;
+  filter: brightness(0.7);
+  transition: all 0.5s ease;
+}
+
+.homeContainer .middlePage .homeCard p {
+  font-size: clamp(1rem, 2vw, 1.125rem); /* ✅ 18px → responsive */
+  line-height: 1.5;
+}
+
+.homeContainer .middlePage .cardContent:hover .homeCardImage {
+  opacity: 1;
+}
+
+.homeContainer .middlePage .cardContent:hover .homeCard {
+  background-color: color-mix(in srgb, transparent 80%, var(--bg-primary) 20%);
+  color: var(--fg-secondary);
+}
+
+.homeContainer .middlePage .cardContent:hover .homeCard .paddingIcon {
+  background-color: var(--fg-secondary);
+}
+
+.homeContainer .middlePage .cardContent:hover .homeCard .featureIconContainer .featureIcon {
+  color: var(--bg-primary);
+}
+
+.homeContainer .middlePage .contentCardFormate {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeContainer .middlePage .homeCardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.homeContainer .middlePage .cardContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex-wrap: wrap; /* ✅ Allow wrap */
+  gap: clamp(15px, 3vw, 30px); /* ✅ Add gap */
+}
+
+.homeContainer .middlePage .cardContent .featureIconContainer {
+  margin: clamp(10px, 2vw, 20px) clamp(5px, 1vw, 10px); /* ✅ Responsive */
+  z-index: 1;
+}
+
+.homeContainer .middlePage .cardContent h4,
+.homeContainer .middlePage .cardContent h5,
+.homeContainer .middlePage .cardContent p {
+  text-align: center;
+  margin: clamp(5px, 1vw, 10px);
+}
+
+/* ===== SPECIAL THANKS ===== */
+#specialThanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md); /* ✅ Add padding */
+  width: 100%;
+}
+
+#specialThanks .title h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* ✅ Wrap on mobile */
+  gap: clamp(8px, 2vw, 16px); /* ✅ Replace &nbsp; */
+  text-align: center;
+}
+
+#specialThanks .title h1 svg {
+  width: clamp(30px, 5vw, 50px); /* ✅ Responsive icon */
+  height: clamp(30px, 5vw, 50px);
+  flex-shrink: 0;
+}
+
+#specialThanks ul {
+  list-style: disc;
+  padding-left: clamp(20px, 5vw, 40px); /* ✅ Responsive indent */
+  width: 100%;
+  max-width: 800px; /* ✅ Prevent too wide */
+}
+
+#specialThanks ul li {
+  font-size: clamp(1rem, 2.5vw, 1.625rem); /* ✅ 26px → responsive */
+  margin-bottom: clamp(8px, 1.5vw, 12px); /* ✅ Add spacing */
+  line-height: 1.5;
+  word-wrap: break-word; /* ✅ Prevent overflow */
+}
+
+#specialThanks ul li b {
+  width: clamp(120px, 20vw, 200px); /* ✅ 200px → responsive */
+  display: inline-block;
+}
+
+/* ===== SCROLL ANIMATIONS (keep as-is) ===== */
+.homeContainer .middlePage .features .content .info.scrollElement {
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: all ease-in-out 1s;
+  transition-delay: 0.5s;
+  will-change: transform;
+}
+
+.homeContainer .middlePage .features .content .info:nth-child(even).scrollElement {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.homeContainer .middlePage .features .content .info.scrollElement.visible {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.homeContainer .middlePage .homeCard.scrollElement {
+  opacity: 0;
+  transform: translateY(20%);
+  transition: all ease-in-out 500ms !important;
+  transition-delay: 0.5s;
+  will-change: transform;
+}
+
+.homeContainer .middlePage .homeCard.scrollElement.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MEDIA QUERIES
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ===== TABLET (max-width: 1024px) ===== */
+@media (max-width: 1024px) {
+  .homeContainer .heroSection {
+    min-height: 60vh;
+  }
+
+  .homeContainer .middlePage .cardContent {
+    gap: 20px;
+  }
+
+  .homeContainer .middlePage .homeCard {
+    max-width: 350px;
+  }
+}
+
+/* ===== MOBILE (max-width: 768px) ===== */
+@media (max-width: 768px) {
+  /* Hero section tighter */
+  .homeContainer .heroSection {
+    min-height: 50vh;
+    justify-content: center;
+    gap: var(--space-lg);
+  }
+
+  /* Info cards stack vertically */
+  .homeContainer .middlePage .features .content .info,
+  .homeContainer .middlePage .features .content .info:nth-child(even) {
+    flex-direction: column; /* ✅ Stack on mobile */
+    align-items: center;
+    text-align: center;
+  }
+
+  .homeContainer .middlePage .infoContent h6 {
+    text-align: center;
+  }
+
+  /* Scroll animation adjust for mobile */
+  .homeContainer .middlePage .features .content .info.scrollElement {
+    transform: translateY(30%); /* ✅ Vertical instead of horizontal */
+  }
+
+  .homeContainer .middlePage .features .content .info:nth-child(even).scrollElement {
+    transform: translateY(30%); /* ✅ Same for even */
+  }
+
+  .homeContainer .middlePage .features .content .info.scrollElement.visible {
+    transform: translateY(0);
+  }
+  .homeContainer .contentCardFormate .homeCardContainer .homeCardImage {
+    height: 91%;
+  }
+
+  /* Special thanks */
+  #specialThanks ul li b {
+    width: auto; /* ✅ Full width on mobile */
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+
+/* ===== SMALL MOBILE (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  .homeContainer .heroSection h1 {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .homeContainer .heroSection h2 {
+    font-size: clamp(1rem, 5vw, 1.25rem);
+  }
+
+  .homeContainer .heroSection p {
+    font-size: 0.9rem;
+  }
+
+  .homeContainer .heroSection .searchContainer input {
+    padding-right: 80px; /* ✅ Smaller button space */
+  }
+
+  .homeContainer .heroSection .searchContainer button {
+    width: 70px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .homeContainer .middlePage .homeCard {
+    margin: 10px 0;
+    padding: 15px;
+  }
+
+  #specialThanks ul li {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== TOUCH DEVICE ===== */
+@media (hover: none) and (pointer: coarse) {
+  .homeContainer .middlePage .homeCard:hover {
+    transform: none; /* ✅ Disable hover on touch */
+  }
+}

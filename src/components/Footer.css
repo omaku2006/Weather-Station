@@ -1,0 +1,302 @@
+/* ===== FOOTER BASE ===== */
+footer {
+  width: 100%; /* ✅ 100vw → 100% */
+  min-height: 600px; /* ✅ height → min-height */
+  height: auto;
+  padding: clamp(30px, 5vw, 60px) clamp(20px, 6vw, 100px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-primary);
+  color: var(--fg-secondary);
+  padding-bottom: clamp(60px, 8vw, 100px);
+  gap: clamp(20px, 3vw, 40px);
+  justify-content: center;
+  align-items: start;
+}
+
+/* ===== LEFT PART - BRAND ===== */
+footer .leftPart {
+  position: relative;
+}
+
+footer .brandSection {
+  position: relative;
+  margin: clamp(10px, 3vw, 40px);
+}
+
+/* ✅ Override inline width:300px from JSX */
+footer .brandSection .footerBrandName h1 {
+  max-width: 100% !important;
+  width: 100% !important;
+  text-wrap: wrap;
+  font-size: clamp(2rem, 5vw, 3.75rem); /* 60px → responsive */
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+footer .brandSection .footerBrandName h1 * {
+  text-wrap: wrap;
+  white-space: normal;
+}
+
+/* Floating clouds */
+footer .brandSection .floatingCloud {
+  position: absolute;
+  width: 100%;
+  top: -40px;
+  left: 0;
+}
+
+footer .brandSection .floatingCloud .cloudContainer {
+  position: absolute;
+  animation: floatingCloud linear infinite;
+  will-change: transform;
+  height: auto;
+}
+
+@keyframes floatingCloud {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Footer big icon */
+footer .brandSection .footerBrandIcon {
+  display: flex;
+  justify-content: center;
+}
+
+footer .brandSection .footerBrandIcon .floatingCloud svg * {
+  /* width: clamp(60px, 10vw, 100px); */
+  /* height: clamp(60px, 10vw, 100px); */
+}
+
+/* ===== BETWEEN PART - QUICK LINKS ===== */
+footer .betweenPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .betweenPart h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: clamp(10px, 2vw, 20px);
+}
+
+footer .betweenPart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+footer .betweenPart ul li {
+  font-size: clamp(1rem, 2vw, 1.5rem); /* 24px → responsive */
+  margin: clamp(5px, 1vw, 10px) 0;
+  padding: clamp(6px, 1vw, 8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* ✅ &nbsp; thi better */
+  cursor: pointer;
+  transition: color 300ms ease;
+  border-radius: 8px;
+}
+
+footer .betweenPart ul li:hover {
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--fg-primary) 10%, transparent 90%);
+}
+
+footer .betweenPart ul li svg {
+  width: clamp(16px, 2vw, 20px);
+  height: clamp(16px, 2vw, 20px);
+  flex-shrink: 0;
+}
+
+/* ===== RIGHT PART - SOCIAL LINKS ===== */
+footer .rightPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .rightPart h3 {
+  display: flex;
+  justify-content: center;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: clamp(10px, 2vw, 20px);
+}
+
+/* ✅ Clean social row - direct children only */
+footer .rightPart > div {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Icon + text */
+  align-items: center;
+  gap: clamp(8px, 2vw, 12px);
+  border-radius: 8px;
+  padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px);
+  margin: clamp(4px, 0.8vw, 8px) 0;
+  cursor: pointer;
+  width: 100%;
+  max-width: 220px;
+  transition: all 300ms ease;
+}
+
+footer .rightPart > div:hover {
+  background-color: var(--fg-primary);
+  color: var(--bg-primary);
+  transform: translateX(4px);
+}
+
+/* Social icon */
+footer .rightPart > div > svg:first-child,
+footer .rightPart > div > *:first-child {
+  padding: 0;
+  align-self: center;
+  width: clamp(28px, 4vw, 40px);
+  height: clamp(28px, 4vw, 40px);
+  margin: 0;
+}
+
+/* Social text */
+footer .rightPart > div > p:last-child,
+footer .rightPart > div > *:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* 24px → responsive */
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+
+/* ===== TRANSPARENT BRAND NAME (Background Watermark) ===== */
+#transparentBrandName {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  bottom: 0;
+  height: clamp(50px, 10vw, 115px);
+  overflow: hidden;
+  pointer-events: none; /* ✅ Click pass through */
+}
+
+#transparentBrandName h1 {
+  color: var(--fg-primary);
+  opacity: 0.5;
+  font-size: clamp(3rem, 14vw, 10.9rem); /* 175px → responsive */
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MEDIA QUERIES
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ===== TABLET (max-width: 1024px) ===== */
+@media (max-width: 1024px) {
+  footer {
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    grid-template-rows: auto auto;
+    position: relative;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  /* Brand full width on top */
+  footer .leftPart {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  footer .brandSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100vw;
+  }
+
+  footer .betweenPart,
+  footer .rightPart {
+    align-items: center;
+  }
+}
+
+/* ===== MOBILE (max-width: 768px) ===== */
+@media (max-width: 768px) {
+  footer {
+    grid-template-columns: 1fr; /* Stack everything */
+    gap: clamp(30px, 6vw, 40px);
+    padding: 30px 20px;
+    padding-bottom: clamp(50px, 8vw, 80px);
+  }
+
+  footer .leftPart,
+  footer .betweenPart,
+  footer .rightPart {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Center brand icon and name */
+  footer .brandSection .footerBrandIcon {
+    justify-content: center;
+  }
+
+  footer .brandSection .footerBrandName h1 {
+    text-align: center;
+  }
+
+  /* Social links centered */
+  footer .rightPart > div {
+    width: 150px;
+    margin: 6px auto;
+  }
+
+  /* Clouds slightly smaller on mobile */
+  footer .brandSection .floatingCloud svg {
+    width: 50%;
+  }
+}
+
+/* ===== SMALL MOBILE (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  footer {
+    padding: 20px 15px;
+    padding-bottom: 40px;
+    gap: 25px;
+  }
+
+  footer .brandSection {
+    margin: 10px 0;
+  }
+
+  footer .betweenPart ul li {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  footer .rightPart > div {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  /* Tiny watermark text */
+  #transparentBrandName {
+    height: 40px;
+  }
+
+  #transparentBrandName h1 {
+    font-size: 2.5rem;
+  }
+}

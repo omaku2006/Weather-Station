@@ -1,0 +1,260 @@
+.weatherImage {
+  width: 100vw;
+  height: 100vh;
+  filter: brightness(0.8);
+  position: fixed;
+  z-index: 0;
+}
+
+.weatherContainer {
+  transition: padding ease-in-out 500ms;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.btnContainer {
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  position: absolute;
+}
+
+.abovePart {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 10px;
+}
+
+.topLeft .temp {
+  font-size: 72px;
+  color: var(--fg-secondary);
+}
+
+.topLeft .condition {
+  display: flex;
+  align-items: center;
+}
+
+.topLeft .condition * {
+  margin: 4px 8px;
+}
+
+.topLeft .condition h2 {
+  font-size: 44px;
+}
+
+.topLeft .location {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+.topLeft .location p {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 4px 10px;
+  border-radius: 30px;
+  background-color: var(--fg-primary);
+  color: var(--bg-primary);
+}
+.topLeft .location .info {
+  margin: 0 4px;
+}
+
+.rightPartContainer {
+  position: relative;
+}
+
+.rightPart {
+  margin: 20px 0;
+  height: 424px;
+  overflow-y: scroll;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  scroll-snap-type: y mandatory;
+}
+.scrollbtn {
+  position: absolute;
+  background-color: transparent;
+  outline: none;
+  opacity: 0;
+  transition: 500ms ease-in-out all;
+  border: none;
+  z-index: 9;
+}
+
+.rightPartContainer:hover .scrollbtn {
+  opacity: 1;
+}
+
+.scrollbtn * {
+  color: var(--fg-secondary);
+}
+
+.scrollbtn.btnup {
+  top: 0;
+  left: 50%;
+}
+
+.scrollbtn.btndown {
+  bottom: 0;
+  left: 50%;
+}
+
+.rightPart .section {
+  display: grid;
+  gap: 8px;
+  padding: 5px;
+  margin: 4px;
+  grid-template-columns: 1fr max-content 1fr;
+  padding: 20px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.rightPart .section .iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightPart .section p {
+  font-size: 22px;
+}
+
+.rightPart .section .iconContainer span {
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  border-radius: 100%;
+  border: 3px solid var(--fg-secondary);
+}
+
+.rightPart .section .info p {
+  display: inline;
+}
+
+.rightPart .date {
+  padding: 8px;
+  border-radius: 20px;
+  height: 98px;
+  display: flex;
+  flex-direction: column;
+  background-color: color-mix(in srgb, var(--bg-primary) 20%, transparent 80%);
+  width: 100%;
+  backdrop-filter: blur(5px);
+}
+.rightPart .date h5 {
+  text-align: center;
+  margin: 7px;
+}
+.bottom {
+  position: absolute;
+  display: flex;
+  bottom: 32px;
+}
+
+.cardContainerWrap {
+  width: 65vw;
+}
+
+.cardContainer {
+  display: flex;
+  overflow: auto;
+  height: 70%;
+  align-self: flex-end;
+  scroll-snap-type: x mandatory;
+  /* 👇 magic fade */
+  /* -webkit-mask-image: linear-gradient(to right, black 0%, black 75%, transparent 100%); */
+  /* mask-image: linear-gradient(to right, black 0%, black 75%, transparent 100%); */
+}
+
+.bottom .hr {
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  left: 65.1vw;
+  background-color: var(--fg-primary);
+}
+
+.cardContainerWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cardContainerWrap .date {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 32px;
+  width: 40%;
+  border-radius: 30px;
+  transition: all 300ms ease-in-out;
+}
+
+.cardContainerWrap .date p {
+  font-size: 22px;
+  text-align: center;
+}
+
+.cardContainerWrap .dateWrap {
+  position: relative;
+}
+
+.cardContainerWrap .date .btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cardContainerWrap .date .decrementBtn {
+  left: 10px;
+}
+.cardContainerWrap .date .incrementBtn {
+  right: 10px;
+}
+
+.cardContainerWrap:hover .scrollbtn {
+  opacity: 1;
+}
+
+.cardContainerWrap:hover .date {
+  background-color: color-mix(in srgb, var(--bg-primary) 20%, transparent 80%);
+
+  backdrop-filter: blur(8px);
+}
+
+.scrollbtn.leftScroll,
+.scrollbtn.rightScroll {
+  top: 50%;
+  position: absolute;
+  opacity: 0;
+  border-radius: 10px;
+  background-color: color-mix(in srgb, var(--bg-primary) 20%, transparent 80%);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+}
+
+.scrollbtn.leftScroll {
+  left: 0;
+}
+
+.scrollbtn.rightScroll {
+  right: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────── */
+.astronomySummaryWrap {
+  position: relative;
+  width: 32vw;
+}

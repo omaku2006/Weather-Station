@@ -1,0 +1,115 @@
+/* ===== LOADER BASE ===== */
+.loader {
+  height: 100dvh; /* ✅ dvh = mobile viewport stable (URL bar adjust thai to bhi) */
+  width: 100%; /* ✅ 100vw → 100% (scrollbar overflow fix) */
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  background: var(--bg-primary, #0a0a0a);
+  overflow: hidden; /* ✅ Prevent any scroll during load */
+}
+
+/* ===== LOADER CONTAINER (blur overlay) ===== */
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ✅ align-self/justify-self hatavi didha — flex ma nathi joiye */
+  width: 100%;
+  height: 100dvh;
+  padding: clamp(16px, 4vw, 40px); /* ✅ Breathing room on all screens */
+  background-color: color-mix(in srgb, var(--bg-primary) 20%, transparent 80%);
+  backdrop-filter: blur(8px);
+}
+
+/* ===== SVG — Responsive Scale ===== */
+.loader svg {
+  z-index: 99999;
+  /* ✅ scale(4) hatavi ne responsive width kari didhi */
+  width: min(85vw, 1000px); /* 85% viewport width, max 1000px */
+  height: auto; /* ✅ Aspect ratio maintain thashe viewBox thi */
+  max-height: 35dvh; /* ✅ Mobile ma height overflow nahi thay */
+  display: block; /* ✅ Remove extra space */
+}
+
+/* ===== PATH ANIMATION — EXACT SAME (no change!) ===== */
+.loader svg path {
+  fill: transparent;
+  stroke: var(--fg-secondary, #ffffff);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  /* ⚠️ EXACT path length — aa change naa karvi! */
+  stroke-dasharray: 2218;
+  stroke-dashoffset: 2218;
+
+  /* ✅ Animation same */
+  animation: smooth-loader 8s ease-in-out infinite alternate;
+  will-change: stroke-dashoffset, fill;
+}
+
+/* ===== KEYFRAMES — EXACT SAME ===== */
+@keyframes smooth-loader {
+  0% {
+    stroke-dashoffset: 2218;
+    fill: transparent;
+  }
+  50% {
+    stroke-dashoffset: 1109;
+  }
+  90% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: var(--fg-secondary, #ffffff);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MEDIA QUERIES — Fine Tuning
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ===== TABLET (max-width: 1024px) ===== */
+@media (max-width: 1024px) {
+  .loader svg {
+    width: min(90vw, 800px);
+    max-height: 30dvh;
+  }
+}
+
+/* ===== MOBILE (max-width: 768px) ===== */
+@media (max-width: 768px) {
+  .loader svg {
+    width: 92vw;
+    max-height: 25dvh;
+  }
+
+  .loader svg path {
+    stroke-width: 1.5px; /* ✅ Thoda thin — mobile ma sharp lagshe */
+  }
+}
+
+/* ===== SMALL MOBILE (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  .loader svg {
+    width: 95vw;
+    max-height: 20dvh;
+  }
+
+  .loaderContainer {
+    padding: 12px; /* ✅ Less padding */
+  }
+}
+
+/* ===== LANDSCAPE MOBILE (height < 500px) ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .loader svg {
+    max-height: 50dvh; /* ✅ Landscape ma height vadhare mle */
+    width: min(70vw, 600px);
+  }
+}
