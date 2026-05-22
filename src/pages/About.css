@@ -12,10 +12,6 @@
   scroll-behavior: smooth;
 }
 
-.aboutUsPage footer {
-  left: -100px;
-}
-
 .aboutUsPage p {
   font-size: 28px;
 }
