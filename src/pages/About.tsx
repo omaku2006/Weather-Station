@@ -110,7 +110,7 @@ const About = ({ setTab }: Props) => {
           name="keywords"
           content="about weather station, open source weather app, weather API, free weather data, weather project"
         />
-        <link rel="canonical" href="https://yourdomain.com/about" />
+        <link rel="canonical" href="https://weather-station-iota.vercel.app/about" />
         <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(softwareSchema)}</script>
       </Helmet>

@@ -8,6 +8,15 @@ import './App.css';
 import { CloudSunIcon, HouseIcon, UserListIcon } from '@phosphor-icons/react';
 import Loading from './pages/Loading.tsx';
 import { DotsThreeCircle } from 'phosphor-react';
+// import ReactGA from 'react-ga4';
+//
+// // Component andar, return pehla
+// ReactGA.initialize(''); // ← AA ID KYA MALSE?
+//
+// // Track page views
+// useEffect(() => {
+//   ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+// }, [location]);
 
 const Home = lazy(() => import('./pages/Home.tsx'));
 const WeatherFirstPage = lazy(() => import('./pages/WeatherPart1.tsx'));

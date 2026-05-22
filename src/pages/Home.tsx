@@ -94,7 +94,7 @@ const Home: FC<Props> = ({ setCity, setTab }) => {
           name="keywords"
           content="weather, forecast, temperature, humidity, rain, sun, moon, astronomy, real-time weather"
         />
-        <link rel="canonical" href="https://yourdomain.com" />
+        <link rel="canonical" href="https://weather-station-iota.vercel.app" />
         <script type="application/ld+json">{JSON.stringify(homeSchema)}</script>
       </Helmet>
       <div className="homeContainer">
