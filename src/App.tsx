@@ -8,15 +8,13 @@ import './App.css';
 import { CloudSunIcon, HouseIcon, UserListIcon } from '@phosphor-icons/react';
 import Loading from './pages/Loading.tsx';
 import { DotsThreeCircle } from 'phosphor-react';
-// import ReactGA from 'react-ga4';
+import ReactGA from 'react-ga4';
 //
 // // Component andar, return pehla
-// ReactGA.initialize(''); // ← AA ID KYA MALSE?
-//
-// // Track page views
-// useEffect(() => {
-//   ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-// }, [location]);
+ReactGA.initialize('G-J39QTB3X3B'); // ← AA ID KYA MALSE?
+ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
+
+// Track page views
 
 const Home = lazy(() => import('./pages/Home.tsx'));
 const WeatherFirstPage = lazy(() => import('./pages/WeatherPart1.tsx'));
@@ -66,6 +64,10 @@ const App = () => {
     if (tab === 'Weather') {
       weatherPageRef.current?.scrollTo({ top: 0, behavior: 'instant' });
     }
+    ReactGA.send({
+      hitType: 'pageview',
+      page: `/${tab.toLowerCase().replace(/\s+/g, '-')}`,
+    });
   }, [tab]);
 
   const currentSeo = seoConfig[tab] || seoConfig.Home;
