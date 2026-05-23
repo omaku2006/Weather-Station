@@ -179,17 +179,19 @@ const About = ({ setTab }: Props) => {
             <div className="aboutTopRight scrollElement">
               <div className="floatingCloud">
                 {clouds.map((cloud, i) => (
-                  <cloud.Icon
-                    fill="var(--bg-primary)"
-                    key={i}
-                    size={cloud.size * 2}
-                    style={{
-                      animationDelay: cloud.delay,
-                      animationDuration: cloud.duration,
-                      top: cloud.top,
-                      opacity: cloud.opacity,
-                    }}
-                  />
+                  <div
+                    className="cloudContainer"
+                    style={{ animationDelay: cloud.delay, animationDuration: cloud.duration }}
+                  >
+                    <cloud.Icon
+                      key={i}
+                      size={cloud.size}
+                      style={{
+                        top: cloud.top,
+                        opacity: cloud.opacity,
+                      }}
+                    />
+                  </div>
                 ))}
               </div>
               <AirTrafficControlIcon size={250} className="WSLogo" />

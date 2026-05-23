@@ -1,276 +1,369 @@
+/* ===== ABOUT PAGE BASE ===== */
 .aboutUsPage {
   position: relative;
-  padding: 30px;
-  padding-left: 100px;
+  padding: clamp(16px, 2vw, 30px);
+  padding-left: clamp(85px, 7vw, 110px);
   background-color: var(--fg-primary);
   color: var(--bg-primary);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
 
 .aboutUsPage p {
-  font-size: 28px;
+  font-size: clamp(16px, 2vw, 28px);
+  line-height: 1.6;
 }
 
+/* ===== HERO SECTION ===== */
 .aboutUsPage .aboutHeroSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
   scroll-snap-align: start;
+  gap: clamp(20px, 3vw, 40px);
+  min-height: 100vh;
+  padding: clamp(20px, 3vw, 40px) 0;
 }
 
+/* Left - Text */
 .aboutUsPage .aboutHeroSection .aboutLeft {
-  width: 45%;
-  height: 100%;
-  flex-grow: 0;
+  width: clamp(45%, 48vw, 50%);
   flex-shrink: 0;
 }
 
 .aboutUsPage .aboutHeroSection .aboutLeft h1 {
-  font-size: 90px;
-  margin-bottom: 44px;
+  font-size: clamp(2.5rem, 6.5vw, 5.625rem); /* 90px */
+  margin-bottom: clamp(20px, 3vw, 44px);
+  line-height: 1.1;
 }
 
 .aboutUsPage .aboutHeroSection .aboutLeft h2 {
-  font-size: 56px;
-  margin-bottom: 24px;
+  font-size: clamp(1.5rem, 4vw, 3.5rem); /* 56px */
+  margin-bottom: clamp(12px, 1.7vw, 24px);
+  line-height: 1.2;
 }
 
 .aboutUsPage .aboutHeroSection .aboutLeft p {
-  line-height: 2.2;
+  line-height: clamp(1.6, 2.2vw, 2.2);
   text-align: justify;
+  font-size: clamp(14px, 1.8vw, 28px);
 }
 
 .aboutUsPage .aboutHeroSection .aboutLeft q {
   font-style: italic;
   font-weight: 800;
+  font-size: clamp(14px, 1.6vw, 24px);
 }
 
+/* Right - Images */
 .aboutUsPage .aboutHeroSection .aboutRight {
-  width: 50%;
+  width: clamp(45%, 48vw, 50%);
   display: flex;
   flex-direction: column;
-  flex-grow: 0;
   flex-shrink: 0;
+  gap: clamp(10px, 1.5vw, 20px);
 }
 
 .aboutUsPage .aboutHeroSection .aboutRight img {
-  margin: 15px;
-  border-radius: 36px;
+  width: 100%;
+  height: auto;
+  border-radius: clamp(20px, 2.5vw, 36px);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 300ms ease;
 }
 
+.aboutUsPage .aboutHeroSection .aboutRight img:hover {
+  transform: scale(1.02);
+}
+
+/* ===== DETAILED SECTION ===== */
 .aboutUsPage .aboutDetailed {
-  height: 100%;
   position: relative;
-  margin: 20px 0;
+  margin: clamp(20px, 3vw, 40px) 0;
   scroll-snap-align: start;
 }
 
 .aboutUsPage .aboutDetailed h1 {
-  font-size: 80px;
+  font-size: clamp(2rem, 5.5vw, 5rem); /* 80px */
+  line-height: 1.1;
+  margin-bottom: clamp(20px, 2vw, 30px);
 }
 
+/* Top - Story */
 .aboutUsPage .aboutDetailed .aboutTop {
   display: flex;
   flex-direction: row;
+  gap: clamp(20px, 3vw, 40px);
+  min-height: 80vh;
+  align-items: center;
 }
 
 .aboutUsPage .aboutDetailed .aboutTop .aboutTopLeft {
-  width: 45%;
+  width: clamp(45%, 48vw, 50%);
 }
 
 .aboutUsPage .aboutDetailed .aboutTop .aboutTopLeft h1 {
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 2vw, 30px);
 }
 
 .aboutUsPage .aboutDetailed .aboutTop .aboutTopLeft p {
-  line-height: 2;
+  line-height: clamp(1.6, 2vw, 2);
+  font-size: clamp(14px, 1.8vw, 28px);
 }
 
+/* Top Right - Logo + Clouds */
 .aboutUsPage .aboutDetailed .aboutTop .aboutTopRight {
-  width: 50%;
+  width: clamp(45%, 48vw, 50%);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: clamp(300px, 40vw, 500px);
 }
 
+/* ===== FLOATING CLOUDS ===== */
 .aboutUsPage .floatingCloud {
   position: absolute;
-  width: 50%;
+  width: 100%;
   top: 80px;
+  left: 0;
+  height: clamp(120px, 15vw, 200px); /* ✅ Height adjust */
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.aboutUsPage .floatingCloud * {
+.aboutUsPage .floatingCloud .cloudContainer {
   position: absolute;
   animation: floatingCloud linear infinite;
   will-change: transform;
+  height: auto;
 }
 
-.aboutUsPage .floatingCloud svg {
-  top: 300px;
-
-  width: 60%;
+.aboutUsPage .floatingCloud .cloudContainer svg {
+  width: clamp(60px, 8vw, 100px); /* ✅ Cloud size dynamic */
+  height: auto;
+  fill: var(--bg-primary) !important; /* ✅ Fill with bg-primary */
+  color: var(--bg-primary) !important;
+  opacity: 0.6;
 }
 
+.aboutUsPage footer .floatingCloud .cloudContainer svg {
+  fill: var(--fg-secondary) !important;
+  color: var(--fg-secondary) !important;
+}
+
+/* ✅ Logo dynamic size */
 .aboutUsPage .WSLogo {
-  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  width: clamp(100px, 18vw, 250px);
+  height: auto;
+}
+
+.aboutUsPage .WSLogo svg {
+  width: 100% !important;
+  height: auto !important;
+  color: var(--fg-secondary);
 }
 
 @keyframes floatingCloud {
   0% {
-    transform: translateX(-120%);
+    left: -20%;
   }
   100% {
-    transform: translateX(120%);
-  } /* ← 100% thi vadu — container bahar jaay smoothly */
+    left: 120%;
+  }
 }
 
+/* ===== BOTTOM - Design Philosophy ===== */
 .aboutUsPage .aboutBottom {
   position: relative;
   display: flex;
+  gap: clamp(20px, 3vw, 40px);
   scroll-snap-align: start;
+  min-height: 80vh;
+  align-items: center;
 }
 
+/* Left - Image Cards */
 .aboutUsPage .aboutBottom .aboutBottomLeft {
   position: relative;
-  width: 50%;
+  width: clamp(45%, 48vw, 50%);
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: clamp(300px, 35vw, 500px);
 }
 
 .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard {
   position: absolute;
-  height: 450px;
-  width: 450px;
-  border-radius: 30px;
+  width: clamp(200px, 32vw, 450px);
+  height: clamp(200px, 32vw, 450px);
+  border-radius: clamp(16px, 2vw, 30px);
   transition: all 500ms ease-in-out;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:first-child {
   background: url(/public/card1.png) no-repeat center / cover;
-  transform: translate(-60px, -45px);
+  transform: translate(clamp(-40px, -4vw, -60px), clamp(-30px, -3vw, -45px));
+  z-index: 2;
 }
 
 .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:first-child:hover {
-  z-index: 1;
+  z-index: 3;
+  transform: translate(clamp(-40px, -4vw, -60px), clamp(-30px, -3vw, -45px)) scale(1.05);
 }
 
 .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:last-child {
   background: url(/public/card2.png) no-repeat center / cover;
-  transform: translate(60px, 45px);
-}
-.aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:last-child:hover {
+  transform: translate(clamp(40px, 4vw, 60px), clamp(30px, 3vw, 45px));
   z-index: 1;
 }
+
+.aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:last-child:hover {
+  z-index: 3;
+  transform: translate(clamp(40px, 4vw, 60px), clamp(30px, 3vw, 45px)) scale(1.05);
+}
+
+/* Right - Text */
 .aboutUsPage .aboutBottom .aboutBottomRight {
-  width: 60%;
+  width: clamp(45%, 48vw, 50%);
 }
 
 .aboutUsPage .aboutBottom .aboutBottomRight h1 {
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 2vw, 30px);
 }
 
 .aboutUsPage .aboutBottom .aboutBottomRight p {
-  line-height: 2;
+  line-height: clamp(1.6, 2vw, 2);
+  font-size: clamp(14px, 1.8vw, 28px);
 }
 
+.aboutUsPage .aboutBottom .aboutBottomRight ul {
+  padding-left: clamp(20px, 2vw, 40px);
+}
+
+.aboutUsPage .aboutBottom .aboutBottomRight ul li {
+  font-size: clamp(14px, 1.6vw, 24px);
+  line-height: 1.8;
+  margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+/* ===== THIRD SECTION ===== */
 .aboutUsPage .aboutThird h1 {
   scroll-snap-align: start;
-}
-
-.aboutUsPage .aboutThird h1 {
   position: relative;
-}
-.aboutUsPage .aboutThird h1 {
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 2vw, 30px);
 }
 
 .aboutUsPage .aboutThird .aboutThirdTop {
   position: relative;
   display: flex;
+  gap: clamp(20px, 3vw, 40px);
+  min-height: 80vh;
+  align-items: center;
 }
 
 .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft {
-  width: 50%;
+  width: clamp(45%, 48vw, 50%);
 }
 
 .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft > p {
-  font-size: 30px;
+  font-size: clamp(16px, 2vw, 30px);
   text-decoration: underline;
+  margin-bottom: clamp(10px, 1vw, 16px);
 }
 
 .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft ul {
-  padding-left: 40px;
-  line-height: 2;
+  padding-left: clamp(20px, 2.5vw, 40px);
+  line-height: clamp(1.6, 2vw, 2);
+  margin-bottom: clamp(20px, 2vw, 30px);
 }
 
 .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft ul li {
-  font-size: 24px;
+  font-size: clamp(14px, 1.6vw, 24px);
+  line-height: 1.8;
 }
 
+/* Icons Grid */
 .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight {
-  width: 50%;
+  width: clamp(45%, 48vw, 50%);
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr max-content;
-  grid-row: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-items: center;
+  gap: clamp(10px, 2vw, 30px);
+  padding: clamp(20px, 3vw, 40px);
 }
 
 .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight .aboutThirdIcon {
-  margin: 30px;
-  position: relative;
+  width: clamp(40px, 6vw, 80px);
+  height: auto;
+  transition: transform 300ms ease;
 }
 
+.aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight .aboutThirdIcon:hover {
+  transform: scale(1.1);
+}
+
+/* Third Down - Profile */
 .aboutUsPage .aboutThird .aboutThirdDown {
   display: flex;
-  height: 50%;
-  position: relative;
+  gap: clamp(20px, 3vw, 40px);
+  min-height: 80vh;
+  align-items: center;
+  margin-top: clamp(30px, 4vw, 60px);
 }
 
 .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownLeft {
   display: flex;
-  width: 50%;
-  height: 600px;
+  width: clamp(45%, 48vw, 50%);
   align-items: center;
   justify-content: center;
 }
 
 .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownLeft img {
-  height: 500px;
-  border-radius: 30px;
+  width: clamp(200px, 35vw, 500px);
+  height: auto;
+  max-height: clamp(300px, 42vw, 600px);
+  border-radius: clamp(16px, 2vw, 30px);
+  object-fit: cover;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownRight {
-  width: 50%;
+  width: clamp(45%, 48vw, 50%);
 }
 
 .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownRight ul {
-  padding-left: 30px;
+  padding-left: clamp(20px, 2vw, 30px);
+  margin-bottom: clamp(16px, 2vw, 24px);
 }
 
 .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownRight ul li {
-  font-size: 24px;
-  line-height: 1.5;
+  font-size: clamp(14px, 1.6vw, 24px);
+  line-height: 1.6;
+  margin-bottom: clamp(6px, 0.8vw, 10px);
 }
 
+/* ===== LAST SECTION ===== */
 .aboutUsPage .aboutLastWrap {
   display: flex;
-  scroll-snap-align: start;
-
   justify-content: center;
+  scroll-snap-align: start;
+  padding: clamp(30px, 4vw, 60px) 0;
 }
 
 .aboutUsPage .aboutLast {
-  width: 60%;
+  width: clamp(80%, 60vw, 60%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -278,23 +371,47 @@
 }
 
 .aboutUsPage .aboutLast h1 {
-  margin: 30px 0;
+  margin: clamp(20px, 2.5vw, 30px) 0;
+  text-align: center;
+}
+
+.aboutUsPage .aboutLast ul {
+  padding-left: clamp(20px, 2vw, 30px);
+  margin-bottom: clamp(16px, 2vw, 24px);
 }
 
 .aboutUsPage .aboutLast ul li {
-  font-size: 24px;
-  line-height: 1.5;
+  font-size: clamp(14px, 1.6vw, 24px);
+  line-height: 1.6;
+  margin-bottom: clamp(6px, 0.8vw, 10px);
 }
 
 .aboutUsPage .aboutLast p {
-  line-height: 1.5;
-  margin: 8px 0;
+  line-height: 1.6;
+  margin: clamp(6px, 0.8vw, 8px) 0;
+  text-align: center;
+  font-size: clamp(14px, 1.6vw, 24px);
 }
 
+.aboutUsPage .aboutLast .highlight {
+  background: color-mix(in srgb, var(--accent-color) 20%, transparent 80%);
+  padding: clamp(8px, 1vw, 12px) clamp(12px, 1.5vw, 20px);
+  border-radius: clamp(8px, 1vw, 12px);
+  font-weight: 600;
+}
+
+.aboutUsPage .aboutLast .closing {
+  font-style: italic;
+  font-size: clamp(14px, 1.8vw, 28px);
+  margin: clamp(16px, 2vw, 24px) 0;
+}
+
+/* Spacing */
 .aboutUsPage > div {
-  margin: 30px 0;
+  margin: clamp(20px, 3vw, 30px) 0;
 }
 
+/* ===== SCROLL ANIMATIONS ===== */
 .aboutUsPage .aboutHeroSection .aboutLeft.scrollElement {
   transform: translateX(-100%);
 }
@@ -331,7 +448,7 @@
   opacity: 0;
 }
 
-.aboutUsPage .aboutThird .aboutThirdDownRight.aboutThirdDownRight {
+.aboutUsPage .aboutThird .aboutThirdDownRight.scrollElement {
   transform: translateX(100%);
 }
 
@@ -347,4 +464,153 @@
 .aboutUsPage .scrollElement.visible {
   transform: translateX(0) translateY(0) !important;
   opacity: 1 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MEDIA QUERIES
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .aboutUsPage {
+    padding-left: clamp(70px, 7vw, 85px);
+  }
+
+  .aboutUsPage .aboutHeroSection,
+  .aboutUsPage .aboutDetailed .aboutTop,
+  .aboutUsPage .aboutBottom,
+  .aboutUsPage .aboutThird .aboutThirdTop,
+  .aboutUsPage .aboutThird .aboutThirdDown {
+    min-height: auto;
+    padding: clamp(30px, 4vw, 50px) 0;
+  }
+
+  .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard {
+    width: clamp(180px, 28vw, 350px);
+    height: clamp(180px, 28vw, 350px);
+  }
+}
+
+/* Mobile Landscape / Bottom Nav */
+@media (max-width: 768px) {
+  .aboutUsPage {
+    padding-left: 0;
+    padding: clamp(12px, 2vw, 20px);
+    scroll-snap-type: none; /* Disable snap on mobile */
+  }
+
+  /* Stack everything vertically */
+  .aboutUsPage .aboutHeroSection,
+  .aboutUsPage .aboutDetailed .aboutTop,
+  .aboutUsPage .aboutBottom,
+  .aboutUsPage .aboutThird .aboutThirdTop,
+  .aboutUsPage .aboutThird .aboutThirdDown {
+    flex-direction: column;
+    gap: clamp(20px, 4vw, 30px);
+    width: 100%;
+  }
+
+  .aboutUsPage .aboutHeroSection .aboutLeft,
+  .aboutUsPage .aboutHeroSection .aboutRight,
+  .aboutUsPage .aboutDetailed .aboutTop .aboutTopLeft,
+  .aboutUsPage .aboutDetailed .aboutTop .aboutTopRight,
+  .aboutUsPage .aboutBottom .aboutBottomLeft,
+  .aboutUsPage .aboutBottom .aboutBottomRight,
+  .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopLeft,
+  .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight,
+  .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownLeft,
+  .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownRight {
+    width: 100%;
+  }
+
+  /* Hero text center */
+  .aboutUsPage .aboutHeroSection .aboutLeft h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    text-align: center;
+  }
+
+  .aboutUsPage .aboutHeroSection .aboutLeft h2 {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+    text-align: center;
+  }
+
+  .aboutUsPage .aboutHeroSection .aboutLeft p {
+    text-align: center;
+  }
+
+  /* Images full width */
+  .aboutUsPage .aboutHeroSection .aboutRight img {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  /* Image cards stack */
+  .aboutUsPage .aboutBottom .aboutBottomLeft {
+    min-height: clamp(250px, 50vw, 400px);
+  }
+
+  .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard {
+    width: clamp(160px, 40vw, 280px);
+    height: clamp(160px, 40vw, 280px);
+  }
+
+  .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:first-child {
+    transform: translate(clamp(-30px, -6vw, -50px), clamp(-20px, -4vw, -35px));
+  }
+
+  .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:last-child {
+    transform: translate(clamp(30px, 6vw, 50px), clamp(20px, 4vw, 35px));
+  }
+
+  /* Icons grid smaller */
+  .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(15px, 3vw, 25px);
+    padding: clamp(15px, 3vw, 30px);
+  }
+
+  .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight .aboutThirdIcon {
+    width: clamp(35px, 8vw, 60px);
+  }
+
+  /* Profile image */
+  .aboutUsPage .aboutThird .aboutThirdDown .aboutThirdDownLeft img {
+    width: clamp(180px, 50vw, 300px);
+    max-height: clamp(250px, 60vw, 400px);
+  }
+
+  /* Last section wider */
+  .aboutUsPage .aboutLast {
+    width: 95%;
+  }
+
+  .aboutUsPage .aboutLast h1 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .aboutUsPage .aboutHeroSection .aboutLeft h1 {
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
+  }
+
+  .aboutUsPage .aboutDetailed h1,
+  .aboutUsPage .aboutThird h1 {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard {
+    width: clamp(140px, 45vw, 200px);
+    height: clamp(140px, 45vw, 200px);
+  }
+
+  .aboutUsPage .aboutThird .aboutThirdTop .aboutThirdTopRight {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 4vw, 20px);
+  }
+
+  .aboutUsPage .aboutLast p {
+    font-size: clamp(13px, 4vw, 16px);
+  }
 }
