@@ -10,6 +10,7 @@ import { CloudSunIcon, HouseIcon, UserListIcon } from '@phosphor-icons/react';
 import Loading from './pages/Loading.tsx';
 import { DotsThreeCircle } from 'phosphor-react';
 import ReactGA from 'react-ga4';
+import { Analytics } from '@vercel/analytics/react';
 
 ReactGA.initialize('G-J39QTB3X3B');
 
@@ -96,6 +97,7 @@ const App = () => {
 
   return (
     <WeatherProvider city={city}>
+      <Analytics />
       <NavbarProvider>
         <Helmet>
           <title>{currentSeo.title}</title>
