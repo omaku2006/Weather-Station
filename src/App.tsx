@@ -12,6 +12,10 @@ import { DotsThreeCircle } from 'phosphor-react';
 import ReactGA from 'react-ga4';
 import { Analytics } from '@vercel/analytics/react';
 
+const SITE_URL = 'https://weather-station-iota.vercel.app';
+const SITE_NAME = 'Weather Station';
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
+
 ReactGA.initialize('G-J39QTB3X3B');
 
 const Home = lazy(() => import('./pages/Home.tsx'));
@@ -100,30 +104,38 @@ const App = () => {
       <Analytics />
       <NavbarProvider>
         <Helmet>
+          <html lang="en" />
           <title>{currentSeo.title}</title>
           <meta name="description" content={currentSeo.description} />
           <meta name="keywords" content={currentSeo.keywords} />
+          <meta name="theme-color" content="#14213d" />
+          <meta name="robots" content="index, follow" />
+          <meta name="googlebot" content="index, follow" />
+          <meta name="author" content="Om Upadhyay" />
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+          <link rel="canonical" href={`${SITE_URL}${location.pathname}`} />
+
+          {/* Open Graph */}
+          <meta property="og:site_name" content={SITE_NAME} />
           <meta property="og:title" content={currentSeo.title} />
           <meta property="og:description" content={currentSeo.description} />
           <meta property="og:type" content="website" />
-          <meta
-            property="og:url"
-            content={`https://weather-station-iota.vercel.app${location.pathname}`}
-          />
-          <meta
-            property="og:image"
-            content="https://weather-station-iota.vercel.app/og-image.jpg"
-          />
+          <meta property="og:url" content={`${SITE_URL}${location.pathname}`} />
+          <meta property="og:image" content={OG_IMAGE} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:locale" content="en_US" />
+
+          {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={currentSeo.title} />
           <meta name="twitter:description" content={currentSeo.description} />
+          <meta name="twitter:image" content={OG_IMAGE} />
+          <meta name="twitter:image:alt" content={currentSeo.title} />
+          <meta name="twitter:site" content="@omupadhyay" />
+
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta name="theme-color" content="#14213d" />
-          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-          <link
-            rel="canonical"
-            href={`https://weather-station-iota.vercel.app${location.pathname}`}
-          />
         </Helmet>
 
         <Navbar tabs={tabs} setTab={handleTabChange} tab={tab} />

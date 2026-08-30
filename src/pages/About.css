@@ -211,7 +211,7 @@
 }
 
 .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:first-child {
-  background: url(/public/card1.png) no-repeat center / cover;
+  background: url(/card1.png) no-repeat center / cover;
   transform: translate(clamp(-40px, -4vw, -60px), clamp(-30px, -3vw, -45px));
   z-index: 2;
 }
@@ -222,7 +222,7 @@
 }
 
 .aboutUsPage .aboutBottom .aboutBottomLeft .aboutImageCard:last-child {
-  background: url(/public/card2.png) no-repeat center / cover;
+  background: url(/card2.png) no-repeat center / cover;
   transform: translate(clamp(40px, 4vw, 60px), clamp(30px, 3vw, 45px));
   z-index: 1;
 }

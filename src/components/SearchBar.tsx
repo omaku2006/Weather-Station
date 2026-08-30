@@ -11,20 +11,23 @@ const SearchBar = ({ city, setCity }: { city: string; setCity: (city: string) =>
 
   const handleSearch = () => {
     if (input.trim()) {
-      setCity(input);
+      setCity(input.trim());
+      setInput('');
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
       handleSearch();
-      setInput('');
     }
   };
 
   return (
     <div id="searchBox">
-      <Search size={18} strokeWidth={3} id="searchIcon" />
+      <button type="button" id="searchIconBtn" onClick={handleSearch} aria-label="Search city">
+        <Search size={18} strokeWidth={3} id="searchIcon" />
+      </button>
       <input
         type="search"
         className="search"

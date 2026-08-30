@@ -30,12 +30,15 @@ type Props = {
   setCity: (city: string) => void;
 };
 
+const SITE_URL = 'https://weather-station-iota.vercel.app';
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
+
 const homeSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: 'Weather Station',
   description: 'Free real-time weather forecast application with glassmorphism UI',
-  url: 'https://yourdomain.com',
+  url: SITE_URL,
   applicationCategory: 'WeatherApplication',
   operatingSystem: 'Web',
   offers: {
@@ -85,17 +88,39 @@ const Home: FC<Props> = ({ setCity, setTab }) => {
   return (
     <>
       <Helmet>
-        <title>Weather Station | Free Real-Time Weather Forecast</title>
+        <title>Weather Station | Free Real-Time Weather Forecast for Any City</title>
         <meta
           name="description"
-          content="Get accurate weather updates, forecasts, and astronomy data for any city worldwide. Your personal weather companion."
+          content="Get accurate weather updates, forecasts, and astronomy data for any city worldwide. Temperature, humidity, UV index, wind & 24-hour forecast. Your personal weather companion."
         />
         <meta
           name="keywords"
-          content="weather, forecast, temperature, humidity, rain, sun, moon, astronomy, real-time weather"
+          content="weather, forecast, temperature, humidity, rain, sun, moon, astronomy, real-time weather, weather app, weather station"
         />
-        <link rel="canonical" href="https://weather-station-iota.vercel.app" />
+        <link rel="canonical" href={SITE_URL} />
+        <meta property="og:site_name" content="Weather Station" />
+        <meta property="og:title" content="Weather Station | Free Real-Time Weather Forecast for Any City" />
+        <meta
+          property="og:description"
+          content="Get accurate weather updates, forecasts, and astronomy data for any city worldwide. Temperature, humidity, UV index, wind & 24-hour forecast."
+        />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:image" content={OG_IMAGE} />
         <script type="application/ld+json">{JSON.stringify(homeSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Weather Station',
+            url: SITE_URL,
+            description: 'Free real-time weather forecast application with glassmorphism UI',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: `${SITE_URL}/weather?city={search_term_string}`,
+              'query-input': 'required name=search_term_string',
+            },
+          })}
+        </script>
       </Helmet>
       <div className="homeContainer">
         <div className="heroSection">

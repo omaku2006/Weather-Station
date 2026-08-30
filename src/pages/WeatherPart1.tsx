@@ -24,10 +24,11 @@ import AstronomySummary from '../components/AstronomySummary';
 import AnimatedNumber from '../components/AnimatedNumber';
 import TextTypeAnimation from '../components/TextTypeAnimation';
 import Loading from './Loading';
+import ErrorState from '../components/ErrorState';
 import { Helmet } from 'react-helmet-async';
 
 const WeatherFirstPage = () => {
-  const { data, isLoading, icon, location, dateTime, weatherImage, weatherImageSource } =
+  const { data, isLoading, error, refetch, icon, location, dateTime, weatherImage, weatherImageSource } =
     useWeather();
   const [tempUnit, setTempUnit] = useState<'C' | 'F'>('C');
   const [lengthUnit, setLengthUnit] = useState<'Km' | 'M'>('Km');
@@ -71,7 +72,11 @@ const WeatherFirstPage = () => {
     });
   }, [data, isLoading]);
 
-  if (!data?.weather?.[0] || !data?.current_condition?.[0]) {
+  if (error) {
+    return <ErrorState message={error} onRetry={refetch} />;
+  }
+
+  if (isLoading || !data?.weather?.[0] || !data?.current_condition?.[0]) {
     return <Loading />; // or <div>Invalid data structure</div>
   }
 
@@ -86,8 +91,26 @@ const WeatherFirstPage = () => {
         <title>{`Weather in ${cityName}${country ? ', ' + country : ''} | Live Conditions & Forecast`}</title>
         <meta
           name="description"
-          content={`Live weather in ${cityName}: temperature, humidity, UV index, wind speed, and 24-hour forecast. Updated in real-time.`}
+          content={`Live weather in ${cityName}${country ? ', ' + country : ''}: temperature, humidity, UV index, wind speed, and 24-hour forecast. Updated in real-time.`}
         />
+        <meta
+          name="keywords"
+          content={weatherCode[data?.current_condition[0]?.weatherCode]?.label
+            ? `${cityName} weather, ${cityName} temperature, ${cityName} forecast`
+            : 'live weather, temperature, humidity, weather forecast'}
+        />
+        <link
+          rel="canonical"
+          href={`https://weather-station-iota.vercel.app/weather`}
+        />
+        <meta property="og:site_name" content="Weather Station" />
+        <meta property="og:title" content={`Weather in ${cityName} - Live Conditions & Forecast`} />
+        <meta
+          property="og:description"
+          content={`Live weather in ${cityName}: temperature, humidity, UV index, wind speed, and 24-hour forecast.`}
+        />
+        <meta property="og:url" content="https://weather-station-iota.vercel.app/weather" />
+        <meta property="og:image" content="https://weather-station-iota.vercel.app/og-image.png" />
       </Helmet>
       <div className="justcontainer">
         <div

@@ -53,12 +53,39 @@ const WeatherProvider: FC<Props> = ({ children, city }) => {
   const fetchWeather = useCallback(async () => {
     setLoading(true);
     setError(null);
+    setData(null);
     try {
       // ✅ &_=Date.now() prevents proxy caching!
       const res = await axios.get(`${proxy}https://wttr.in/${city}?format=j1&_=${Date.now()}`);
-      setData(res.data);
+      const body = res?.data;
+      const isValid =
+        body &&
+        typeof body === 'object' &&
+        Array.isArray(body.current_condition) &&
+        Array.isArray(body.weather) &&
+        Array.isArray(body.nearest_area) &&
+        body.current_condition.length > 0 &&
+        body.weather.length > 0;
+      if (!isValid) {
+        setData(null);
+        setError(
+          `Oops, we couldn't find "${city}". Please double-check the city name and try again.`
+        );
+      } else {
+        setData(body as WeatherResponse);
+      }
     } catch (e: any) {
-      setError(`Error fetching weather: ${e.message || e}`);
+      setData(null);
+      const status = e?.response?.status;
+      if (status === 500 || status === 404) {
+        setError(
+          `Oops, we couldn't find "${city}". Please check the spelling and try again.`
+        );
+      } else if (e?.response) {
+        setError(`Weather service returned an error (${status}). Please try again.`);
+      } else {
+        setError('Network error. Please check your internet connection and try again.');
+      }
     } finally {
       setLoading(false);
     }

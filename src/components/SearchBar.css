@@ -23,6 +23,27 @@
   flex-shrink: 0;
 }
 
+/* Icon Button */
+#searchIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  transition: transform 200ms ease;
+}
+
+#searchIconBtn:hover {
+  transform: scale(1.15);
+}
+
+#searchIconBtn:active {
+  transform: scale(0.95);
+}
+
 /* Input Field */
 #searchBox .search {
   font-size: clamp(13px, 1.3vw, 18px);

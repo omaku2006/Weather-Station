@@ -11,12 +11,17 @@
       rel="stylesheet"
     />
     <!-- Fallback (overridden by Helmet) -->
-    <title>Weather Station | Real-Time Weather Forecast</title>
+    <title>Weather Station | Free Real-Time Weather Forecast for Any City</title>
     <meta
       name="description"
-      content="Get accurate weather updates, forecasts, and astronomy data for any city worldwide."
+      content="Get accurate weather updates, forecasts, and astronomy data for any city worldwide. Temperature, humidity, UV index, wind & 24-hour forecast."
     />
+    <meta name="keywords" content="weather, forecast, temperature, humidity, rain, sun, moon, astronomy, real-time weather" />
+    <meta name="author" content="Om Upadhyay" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#14213d" />
     <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:site_name" content="Weather Station" />
     <meta property="og:title" content="Weather Station - Your Personal Weather Companion" />
     <meta
       property="og:description"
@@ -28,15 +33,32 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:url" content="https://weather-station-iota.vercel.app/" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Weather Station" />
+    <meta name="twitter:title" content="Weather Station - Your Personal Weather Companion" />
     <meta
       name="twitter:description"
       content="Free real-time weather app with glassmorphism design."
     />
     <meta name="twitter:image" content="https://weather-station-iota.vercel.app/og-image.png" />
+    <meta name="twitter:site" content="@omupadhyay" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://weather-station-iota.vercel.app/" />
+    <!-- Structured Data (fallback) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Weather Station",
+        "url": "https://weather-station-iota.vercel.app/",
+        "description": "Free real-time weather forecast application with glassmorphism UI",
+        "applicationCategory": "WeatherApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://wttr.in" />
     <link rel="preconnect" href="https://api.unsplash.com" />

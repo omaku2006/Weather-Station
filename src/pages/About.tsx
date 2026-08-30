@@ -36,7 +36,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'Weather Station',
   description: 'Open-source weather application providing free weather data to everyone',
-  url: 'https://yourdomain.com/about',
+  url: 'https://weather-station-iota.vercel.app/about',
   founder: {
     '@type': 'Person',
     name: 'Om Upadhyay',
@@ -101,16 +101,24 @@ const About = ({ setTab }: Props) => {
   return (
     <>
       <Helmet>
-        <title>About Weather Station | Open Source Weather App</title>
+        <title>About Weather Station | Free Open Source Weather App</title>
         <meta
           name="description"
-          content="Learn about Weather Station - a free, open-source weather tracking app built with React. Powered by wttr.in and TimeAPI.io."
+          content="Learn about Weather Station - a free, open-source weather tracking app built with React. Powered by wttr.in and TimeAPI.io. Meet the developer Om Upadhyay."
         />
         <meta
           name="keywords"
-          content="about weather station, open source weather app, weather API, free weather data, weather project"
+          content="about weather station, open source weather app, weather API, free weather data, weather project, om upadhyay"
         />
         <link rel="canonical" href="https://weather-station-iota.vercel.app/about" />
+        <meta property="og:site_name" content="Weather Station" />
+        <meta property="og:title" content="About Weather Station | Free Open Source Weather App" />
+        <meta
+          property="og:description"
+          content="Learn about Weather Station - a free, open-source weather tracking app built with React. Powered by wttr.in and TimeAPI.io."
+        />
+        <meta property="og:url" content="https://weather-station-iota.vercel.app/about" />
+        <meta property="og:image" content="https://weather-station-iota.vercel.app/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(softwareSchema)}</script>
       </Helmet>
@@ -148,16 +156,16 @@ const About = ({ setTab }: Props) => {
           </div>
           <div className="aboutRight scrollElement">
             <img
-              src="/public/about1.png"
-              alt="WeatherPage1"
+              src="/about1.png"
+              alt="Weather Station - Live weather dashboard screenshot"
               loading="lazy"
-              onClick={() => openModal('/public/about1.png', 'Page 1')}
+              onClick={() => openModal('/about1.png', 'Page 1')}
             />
             <img
-              src="/public/about2.png"
-              alt="WeatherPage2"
+              src="/about2.png"
+              alt="Weather Station - Astronomy & forecast screenshot"
               loading="lazy"
-              onClick={() => openModal('/public/about2.png', 'Page 1')}
+              onClick={() => openModal('/about2.png', 'Page 1')}
             />
           </div>
         </div>
@@ -201,11 +209,11 @@ const About = ({ setTab }: Props) => {
             <div className="aboutBottomLeft scrollElement">
               <div
                 className="aboutImageCard"
-                onClick={() => openModal('/public/card1.png', 'Page 1 Glassmorphism')}
+                onClick={() => openModal('/card1.png', 'Page 1 Glassmorphism')}
               ></div>
               <div
                 className="aboutImageCard"
-                onClick={() => openModal('/public/card2.png', 'Page 2 Glassmorphism')}
+                onClick={() => openModal('/card2.png', 'Page 2 Glassmorphism')}
               ></div>
             </div>
             <div className="aboutBottomRight scrollElement">
@@ -288,7 +296,7 @@ const About = ({ setTab }: Props) => {
             </div>
             <div className="aboutThirdDown">
               <div className="aboutThirdDownLeft scrollElement">
-                <img src="/public/My Image.jpg" alt="Om Upadhyay Imahe" loading="lazy" />
+                <img src="/My Image.jpg" alt="Om Upadhyay - Developer of Weather Station" loading="lazy" />
               </div>
               <div className="aboutThirdDownRight scrollElement">
                 <h1>

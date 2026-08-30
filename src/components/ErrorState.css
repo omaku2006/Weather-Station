@@ -1,0 +1,75 @@
+.errorState {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 40px);
+}
+
+.errorCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 20px);
+  max-width: 460px;
+  width: 100%;
+  padding: clamp(28px, 5vw, 48px);
+  text-align: center;
+  background: color-mix(in srgb, transparent 75%, var(--bg-primary) 25%);
+  border: 1px solid color-mix(in srgb, var(--fg-secondary) 30%, transparent);
+  border-radius: clamp(20px, 2.5vw, 28px);
+  backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.errorIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(80px, 10vw, 110px);
+  height: clamp(80px, 10vw, 110px);
+  border-radius: 50%;
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color) 15%, transparent);
+}
+
+.errorCard h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--fg-secondary);
+  margin: 0;
+}
+
+.errorCard p {
+  color: var(--fg-primary);
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 360px;
+}
+
+.errorRetryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bg-primary);
+  background: var(--accent-color);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.errorRetryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent-color) 50%, transparent);
+}
+
+.errorRetryBtn:active {
+  transform: translateY(0);
+}

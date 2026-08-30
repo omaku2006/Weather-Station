@@ -17,9 +17,10 @@ import CardContainer from '../components/CardContainer';
 import ToggleButton from '../components/ui/ToggleButton';
 import { InfoPopover } from '../components/InfoPopover';
 import Loading from './Loading';
+import ErrorState from '../components/ErrorState';
 
 const WeatherSecondPage = () => {
-  const { data, location, dateTime } = useWeather();
+  const { data, isLoading, error, refetch, location, dateTime } = useWeather();
   const [index, setIndex] = useState<0 | 1 | 2>(0);
   const [tempUnit, setTempUnit] = useState<'C' | 'F'>('C');
   const [lengthUnit, setLengthUnit] = useState<'Km' | 'M'>('Km');
@@ -55,7 +56,11 @@ const WeatherSecondPage = () => {
       behavior: 'smooth',
     });
   };
-  if (!data?.weather?.[0] || !data?.current_condition?.[0]) {
+  if (error) {
+    return <ErrorState message={error} onRetry={refetch} />;
+  }
+
+  if (isLoading || !data?.weather?.[0] || !data?.current_condition?.[0]) {
     return <Loading />; // or <div>Invalid data structure</div>
   }
 
