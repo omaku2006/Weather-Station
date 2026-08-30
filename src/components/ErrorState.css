@@ -1,8 +1,8 @@
 .errorState {
   height: 100vh;
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
+  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
