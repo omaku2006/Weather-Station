@@ -27,6 +27,31 @@ type WeatherContextType = {
 
 const WeatherContext = createContext<WeatherContextType | undefined>(undefined);
 
+// 1️⃣ Fallback public CORS proxies (used only if the internal /api/weather route fails)
+const PROXIES = [
+  'https://api.cors.syrins.tech/?url=',
+  'https://api.allorigins.win/raw?url=',
+];
+
+const isValidWeather = (body: unknown): body is WeatherResponse => {
+  const obj = body as {
+    current_condition?: unknown[];
+    weather?: unknown[];
+    nearest_area?: unknown[];
+  } | null;
+  return !!(
+    obj &&
+    Array.isArray(obj.current_condition) &&
+    Array.isArray(obj.weather) &&
+    Array.isArray(obj.nearest_area) &&
+    obj.current_condition.length > 0 &&
+    obj.weather.length > 0
+  );
+};
+
+const NOT_FOUND_MESSAGE = (cityName: string) =>
+  `Oops, we couldn't find "${cityName}". Please check the spelling and try again.`;
+
 interface Props {
   children: ReactNode;
   city: string;
@@ -47,41 +72,57 @@ const WeatherProvider: FC<Props> = ({ children, city }) => {
     dayOfWeek: string;
   } | null>(null);
 
-  // 1️⃣ Cache-busting proxy URL
-  const proxy = 'https://api.cors.syrins.tech/?url='; // or allorigins
-
   const fetchWeather = useCallback(async () => {
     setLoading(true);
     setError(null);
     setData(null);
     try {
-      // ✅ &_=Date.now() prevents proxy caching!
-      const res = await axios.get(`${proxy}https://wttr.in/${city}?format=j1&_=${Date.now()}`);
-      const body = res?.data;
-      const isValid =
-        body &&
-        typeof body === 'object' &&
-        Array.isArray(body.current_condition) &&
-        Array.isArray(body.weather) &&
-        Array.isArray(body.nearest_area) &&
-        body.current_condition.length > 0 &&
-        body.weather.length > 0;
-      if (!isValid) {
+      let body: unknown = null;
+      let notFound = false;
+
+      // 1️⃣ Try the internal serverless API route (reliable, no CORS issues)
+      try {
+        const res = await axios.get(`/api/weather?city=${encodeURIComponent(city)}`, {
+          timeout: 15000,
+        });
+        body = res?.data;
+        if (!isValidWeather(body)) notFound = true;
+      } catch (apiErr) {
+        // 2️⃣ Fall back to public CORS proxies
+        const target = `https://wttr.in/${city}?format=j1&_=${Date.now()}`;
+        const encodedTarget = encodeURIComponent(target);
+        let lastError: unknown = null;
+        let proxySuccess = false;
+
+        for (const p of PROXIES) {
+          try {
+            const res = await axios.get(`${p}${encodedTarget}`, { timeout: 15000 });
+            body = res?.data;
+            proxySuccess = true;
+            break;
+          } catch (err) {
+            lastError = err;
+          }
+        }
+
+        if (!proxySuccess) {
+          throw lastError ?? new Error('All weather services are unreachable.');
+        }
+        if (!isValidWeather(body)) notFound = true;
+      }
+
+      if (notFound) {
         setData(null);
-        setError(
-          `Oops, we couldn't find "${city}". Please double-check the city name and try again.`
-        );
+        setError(NOT_FOUND_MESSAGE(city));
       } else {
         setData(body as WeatherResponse);
       }
     } catch (e: any) {
       setData(null);
       const status = e?.response?.status;
-      if (status === 500 || status === 404) {
-        setError(
-          `Oops, we couldn't find "${city}". Please check the spelling and try again.`
-        );
-      } else if (e?.response) {
+      if (status === 404) {
+        setError(NOT_FOUND_MESSAGE(city));
+      } else if (status) {
         setError(`Weather service returned an error (${status}). Please try again.`);
       } else {
         setError('Network error. Please check your internet connection and try again.');
@@ -89,7 +130,7 @@ const WeatherProvider: FC<Props> = ({ children, city }) => {
     } finally {
       setLoading(false);
     }
-  }, [city, proxy]);
+  }, [city]);
 
   // 2️⃣ Reset & Fetch on City Change
   useEffect(() => {

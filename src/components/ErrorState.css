@@ -1,10 +1,13 @@
 .errorState {
-  min-height: 100dvh;
+  height: 100vh;
   width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(16px, 4vw, 40px);
+  scroll-snap-align: start;
 }
 
 .errorCard {
@@ -13,9 +16,9 @@
   align-items: center;
   justify-content: center;
   gap: clamp(12px, 2vw, 20px);
-  max-width: 460px;
-  width: 100%;
-  padding: clamp(28px, 5vw, 48px);
+  width: min(100%, 560px);
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 56px);
   text-align: center;
   background: color-mix(in srgb, transparent 75%, var(--bg-primary) 25%);
   border: 1px solid color-mix(in srgb, var(--fg-secondary) 30%, transparent);
